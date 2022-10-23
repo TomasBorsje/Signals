@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "": {
-      "model": "signals:block/signal_terminal"
-    }
-  }
-}

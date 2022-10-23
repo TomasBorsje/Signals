@@ -15,5 +15,8 @@ public class SignalsLanguageProvider extends LanguageProvider {
     protected void addTranslations() {
         add("itemGroup." + TAB_NAME, "Signals");
         add(Registration.SIGNAL_TERMINAL.get(), "Signal Terminal");
+        add(Registration.SATELLITE_DISH_FRAME.get(), "Satellite Dish Frame");
+        add(Registration.SATELLITE_DISH_SUPPORT.get(), "Satellite Dish Support");
+        add(Registration.SATELLITE_ANTENNA.get(), "Satellite Antenna");
     }
 }

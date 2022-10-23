@@ -14,5 +14,8 @@ public class SignalsItemModels extends ItemModelProvider {
     @Override
     protected void registerModels() {
         withExistingParent(Registration.SIGNAL_TERMINAL_ITEM.getId().getPath(), modLoc("block/signal_terminal"));
+        withExistingParent(Registration.SATELLITE_DISH_FRAME.getId().getPath(), modLoc("block/satellite_dish_frame"));
+        withExistingParent(Registration.SATELLITE_DISH_SUPPORT.getId().getPath(), modLoc("block/satellite_dish_support"));
+        withExistingParent(Registration.SATELLITE_ANTENNA.getId().getPath(), modLoc("block/satellite_antenna"));
     }
 }

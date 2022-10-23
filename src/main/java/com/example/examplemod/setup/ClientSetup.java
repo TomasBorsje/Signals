@@ -8,6 +8,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 @Mod.EventBusSubscriber(modid = Signals.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientSetup {
     public static void init(final FMLClientSetupEvent event) {
-
+        event.enqueueWork(() -> {
+            //ItemBlockRenderTypes.setRenderLayer(Registration.SATELLITE_DISH_SUPPORT.get(), RenderType.cutout());
+        });
     }
 }

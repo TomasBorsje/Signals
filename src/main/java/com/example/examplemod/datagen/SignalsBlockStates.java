@@ -14,6 +14,11 @@ public class SignalsBlockStates extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        simpleBlock(Registration.SATELLITE_DISH_SUPPORT.get(),
+                models().cubeAll(Registration.SATELLITE_DISH_SUPPORT.getId().getPath(), modLoc("block/satellite_dish_support")).renderType("cutout"));
+
         simpleBlock(Registration.SIGNAL_TERMINAL.get());
+        simpleBlock(Registration.SATELLITE_DISH_FRAME.get());
+        simpleBlock(Registration.SATELLITE_ANTENNA.get());
     }
 }
