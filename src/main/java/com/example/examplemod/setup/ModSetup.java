@@ -2,7 +2,6 @@ package com.example.examplemod.setup;
 
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 public class ModSetup {
@@ -10,7 +9,7 @@ public class ModSetup {
     static CreativeModeTab ITEM_TAB = new CreativeModeTab(TAB_NAME) {
         @Override
         public ItemStack makeIcon() {
-            return Items.AMETHYST_BLOCK.getDefaultInstance();
+            return Registration.SIGNAL_TERMINAL_ITEM.get().getDefaultInstance();
         }
     };
     public static void init(final FMLCommonSetupEvent event) {
