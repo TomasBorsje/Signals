@@ -1,0 +1,7 @@
+{
+  "block.signals.satellite_antenna": "Satellite Antenna",
+  "block.signals.satellite_dish_frame": "Satellite Dish Frame",
+  "block.signals.satellite_dish_support": "Satellite Dish Support",
+  "block.signals.signal_terminal": "Signal Terminal",
+  "itemGroup.signals": "Signals"
+}

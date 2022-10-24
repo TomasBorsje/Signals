@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "signals:block/satellite_dish_frame"
+    }
+  }
+}
