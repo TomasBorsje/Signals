@@ -21,5 +21,6 @@ public class SignalsLanguageProvider extends LanguageProvider {
         add(Registration.SATELLITE_ANTENNA.get(), "Satellite Antenna");
         add(SignalTerminalBlock.MESSAGE_SIGNAL_TERMINAL, "Message Signal Terminal");
         add(SignalTerminalBlock.SCREEN_SIGNAL_TERMINAL, "Screen Signal Terminal");
+        add(Registration.TAPE_ITEM.get(), "Tape");
     }
 }

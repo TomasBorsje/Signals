@@ -17,6 +17,8 @@ public class SignalTerminalScreen extends AbstractContainerScreen<SignalTerminal
         super(container, inv, name);
     }
 
+
+
     @Override
     public void render(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(matrixStack);
@@ -35,5 +37,6 @@ public class SignalTerminalScreen extends AbstractContainerScreen<SignalTerminal
         int relX = (this.width - this.imageWidth) / 2;
         int relY = (this.height - this.imageHeight) / 2;
         this.blit(matrixStack, relX, relY, 0, 0, this.imageWidth, this.imageHeight);
+        assert minecraft != null;
     }
 }

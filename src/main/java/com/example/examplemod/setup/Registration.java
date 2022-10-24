@@ -3,6 +3,7 @@ package com.example.examplemod.setup;
 import com.example.examplemod.blockentities.SignalTerminalBlockEntity;
 import com.example.examplemod.blocks.SignalTerminalBlock;
 import com.example.examplemod.containers.SignalTerminalContainer;
+import com.example.examplemod.items.TapeItem;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -49,7 +50,7 @@ public class Registration {
     public static final RegistryObject<Block> SIGNAL_TERMINAL = BLOCKS.register("signal_terminal", SignalTerminalBlock::new);
     public static final RegistryObject<Item> SIGNAL_TERMINAL_ITEM = fromBlock(SIGNAL_TERMINAL);
     public static final RegistryObject<BlockEntityType<SignalTerminalBlockEntity>> SIGNAL_TERMINAL_BLOCK_ENTITY = BLOCK_ENTITIES.register("signal_terminal", () -> BlockEntityType.Builder.of(SignalTerminalBlockEntity::new, SIGNAL_TERMINAL.get()).build(null));
-    public static final RegistryObject<MenuType<SignalTerminalContainer>> SIGNAL_TERMINAL_CONTAINER = CONTAINERS.register("powergen",
+    public static final RegistryObject<MenuType<SignalTerminalContainer>> SIGNAL_TERMINAL_CONTAINER = CONTAINERS.register("signal_terminal",
             () -> IForgeMenuType.create((windowId, inv, data) -> new SignalTerminalContainer(windowId, data.readBlockPos(), inv, inv.player)));
 
     ///// Normal Blocks /////
@@ -59,5 +60,8 @@ public class Registration {
     public static final RegistryObject<Item> SATELLITE_DISH_SUPPORT_ITEM = fromBlock(SATELLITE_DISH_SUPPORT);
     public static final RegistryObject<Block> SATELLITE_ANTENNA = BLOCKS.register("satellite_antenna", () -> new Block(METAL_BLOCK_PROPERTIES));
     public static final RegistryObject<Item> SATELLITE_ANTENNA_ITEM = fromBlock(SATELLITE_ANTENNA);
+
+    ///// Items /////
+    public static final RegistryObject<Item> TAPE_ITEM = ITEMS.register("tape", TapeItem::new);
 
 }
