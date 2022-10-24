@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "signals:satellite_dish_frame"
+        }
+      ],
+      "name": "satellite_dish_frame",
+      "rolls": 1.0
+    }
+  ]
+}

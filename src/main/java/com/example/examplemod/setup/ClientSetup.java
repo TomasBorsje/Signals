@@ -1,6 +1,8 @@
 package com.example.examplemod.setup;
 
 import com.example.examplemod.Signals;
+import com.example.examplemod.screens.SignalTerminalScreen;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -9,7 +11,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class ClientSetup {
     public static void init(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-            //ItemBlockRenderTypes.setRenderLayer(Registration.SATELLITE_DISH_SUPPORT.get(), RenderType.cutout());
+            MenuScreens.register(Registration.SIGNAL_TERMINAL_CONTAINER.get(), SignalTerminalScreen::new);
         });
     }
 }

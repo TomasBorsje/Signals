@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "signals:satellite_antenna"
+        }
+      ],
+      "name": "satellite_dish_antenna",
+      "rolls": 1.0
+    }
+  ]
+}

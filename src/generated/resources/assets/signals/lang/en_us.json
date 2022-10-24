@@ -3,5 +3,7 @@
   "block.signals.satellite_dish_frame": "Satellite Dish Frame",
   "block.signals.satellite_dish_support": "Satellite Dish Support",
   "block.signals.signal_terminal": "Signal Terminal",
-  "itemGroup.signals": "Signals"
+  "itemGroup.signals": "Signals",
+  "message.signal_terminal": "Message Signal Terminal",
+  "screen.signals.signal_terminal": "Screen Signal Terminal"
 }

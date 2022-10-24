@@ -1,6 +1,7 @@
 package com.example.examplemod.datagen;
 
 import com.example.examplemod.Signals;
+import com.example.examplemod.blocks.SignalTerminalBlock;
 import com.example.examplemod.setup.Registration;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
@@ -18,5 +19,7 @@ public class SignalsLanguageProvider extends LanguageProvider {
         add(Registration.SATELLITE_DISH_FRAME.get(), "Satellite Dish Frame");
         add(Registration.SATELLITE_DISH_SUPPORT.get(), "Satellite Dish Support");
         add(Registration.SATELLITE_ANTENNA.get(), "Satellite Antenna");
+        add(SignalTerminalBlock.MESSAGE_SIGNAL_TERMINAL, "Message Signal Terminal");
+        add(SignalTerminalBlock.SCREEN_SIGNAL_TERMINAL, "Screen Signal Terminal");
     }
 }
