@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "signals",
+  "key": {
+    "i": {
+      "tag": "forge:nuggets/iron"
+    },
+    "p": {
+      "item": "minecraft:paper"
+    },
+    "x": {
+      "item": "minecraft:dried_kelp"
+    }
+  },
+  "pattern": [
+    "i i",
+    "xxx",
+    "ppp"
+  ],
+  "result": {
+    "item": "signals:tape"
+  }
+}

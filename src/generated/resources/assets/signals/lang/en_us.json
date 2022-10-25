@@ -6,5 +6,6 @@
   "item.signals.tape": "Tape",
   "itemGroup.signals": "Signals",
   "message.signal_terminal": "Message Signal Terminal",
-  "screen.signals.signal_terminal": "Screen Signal Terminal"
+  "screen.signals.signal_terminal": "Screen Signal Terminal",
+  "signals.empty_tape": "Empty"
 }

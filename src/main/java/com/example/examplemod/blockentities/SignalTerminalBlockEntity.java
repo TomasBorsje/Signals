@@ -2,6 +2,7 @@ package com.example.examplemod.blockentities;
 
 import com.example.examplemod.items.TapeItem;
 import com.example.examplemod.setup.Registration;
+import com.example.examplemod.util.TapeTag;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -16,6 +17,8 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import static com.example.examplemod.util.TapeTag.isValidTapeTag;
 
 public class SignalTerminalBlockEntity extends BlockEntity {
 
@@ -33,11 +36,28 @@ public class SignalTerminalBlockEntity extends BlockEntity {
     }
 
     public void tickServer() {
-
+        ItemStack tape = itemHandler.getStackInSlot(0);
+        if (tape.getItem() == Registration.TAPE_ITEM.get() && isValidTapeTag(tape.getTag())) {
+            // We have a valid tape + tape NBT
+            TapeTag tag = new TapeTag(tape.getTag());
+            if(tag.isEmpty()) {
+                // Empty data
+                // TODO: Generate or get signal data?
+                if (level != null) {
+                    tag.signalId = level.random.nextIntBetweenInclusive(1, 10);
+                    tag.signalName = "Signal " + tag.signalId;
+                }
+            } else {
+                // Do processing
+                tag.downloadProgress += 0.141f/20;
+                tag.downloadProgress = Math.min(tag.downloadProgress, 1);
+            }
+            tape.setTag(tag.toCompoundTag());
+        }
     }
 
     public static boolean isTapeItem(ItemStack stack) {
-        return stack.getItem() instanceof TapeItem;
+        return stack != ItemStack.EMPTY && stack.getItem() instanceof TapeItem;
     }
 
     @Override
@@ -58,19 +78,6 @@ public class SignalTerminalBlockEntity extends BlockEntity {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();
-
-                // Update inserted tapes
-                ItemStack stackInSlot = getStackInSlot(slot);
-                if(stackInSlot != ItemStack.EMPTY && isTapeItem(stackInSlot)) {
-                    if (stackInSlot.hasTag()) {
-                        assert stackInSlot.getTag() != null;
-                        stackInSlot.getTag().putString("lore", "Tag updated.");
-                    } else {
-                        CompoundTag tag = new CompoundTag();
-                        tag.putString("lore", "Fresh tag.");
-                        stackInSlot.setTag(tag);
-                    }
-                }
             }
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
