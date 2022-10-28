@@ -1,6 +1,6 @@
-package com.example.examplemod.datagen;
+package com.wingmann.signals.datagen;
 
-import com.example.examplemod.setup.Registration;
+import com.wingmann.signals.setup.Registration;
 import net.minecraft.data.DataGenerator;
 
 public class SignalsLootTables extends BaseLootTableProvider {

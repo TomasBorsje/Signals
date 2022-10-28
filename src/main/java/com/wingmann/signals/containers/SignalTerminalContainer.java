@@ -1,7 +1,7 @@
-package com.example.examplemod.containers;
+package com.wingmann.signals.containers;
 
-import com.example.examplemod.blockentities.SignalTerminalBlockEntity;
-import com.example.examplemod.setup.Registration;
+import com.wingmann.signals.blockentities.SignalTerminalBlockEntity;
+import com.wingmann.signals.setup.Registration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -28,7 +28,7 @@ public class SignalTerminalContainer extends AbstractContainerMenu {
 
         if (blockEntity != null) {
             blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-                addSlot(new SlotItemHandler(h, 0, 64, 24));
+                addSlot(new SlotItemHandler(h, 0, 82, 24));
             });
         }
 

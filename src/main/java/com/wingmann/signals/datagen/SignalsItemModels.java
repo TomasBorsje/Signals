@@ -1,7 +1,7 @@
-package com.example.examplemod.datagen;
+package com.wingmann.signals.datagen;
 
-import com.example.examplemod.Signals;
-import com.example.examplemod.setup.Registration;
+import com.wingmann.signals.Signals;
+import com.wingmann.signals.setup.Registration;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;

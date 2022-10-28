@@ -1,6 +1,6 @@
-package com.example.examplemod.datagen;
+package com.wingmann.signals.datagen;
 
-import com.example.examplemod.setup.Registration;
+import com.wingmann.signals.setup.Registration;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;

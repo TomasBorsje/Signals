@@ -1,11 +1,10 @@
-package com.example.examplemod;
+package com.wingmann.signals;
 
-import com.example.examplemod.setup.ClientSetup;
-import com.example.examplemod.setup.ModSetup;
-import com.example.examplemod.setup.Registration;
+import com.wingmann.signals.setup.ClientSetup;
+import com.wingmann.signals.setup.ModSetup;
+import com.wingmann.signals.setup.Registration;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;

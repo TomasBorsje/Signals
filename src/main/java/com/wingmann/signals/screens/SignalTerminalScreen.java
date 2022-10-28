@@ -1,7 +1,7 @@
-package com.example.examplemod.screens;
+package com.wingmann.signals.screens;
 
-import com.example.examplemod.Signals;
-import com.example.examplemod.containers.SignalTerminalContainer;
+import com.wingmann.signals.Signals;
+import com.wingmann.signals.containers.SignalTerminalContainer;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
@@ -28,7 +28,8 @@ public class SignalTerminalScreen extends AbstractContainerScreen<SignalTerminal
 
     @Override
     protected void renderLabels(PoseStack matrixStack, int mouseX, int mouseY) {
-        drawString(matrixStack, Minecraft.getInstance().font, "Hello", 10, 10, 0xffffff);
+        drawString(matrixStack, Minecraft.getInstance().font, Component.translatable("signals.ui.signal_terminal_title"), 10, 10, 0xffffff);
+
     }
 
     @Override

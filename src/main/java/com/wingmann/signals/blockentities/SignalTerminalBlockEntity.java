@@ -1,8 +1,10 @@
-package com.example.examplemod.blockentities;
+package com.wingmann.signals.blockentities;
 
-import com.example.examplemod.items.TapeItem;
-import com.example.examplemod.setup.Registration;
-import com.example.examplemod.util.TapeTag;
+import com.wingmann.signals.items.TapeItem;
+import com.wingmann.signals.registry.SignalData;
+import com.wingmann.signals.registry.SignalDataRegistry;
+import com.wingmann.signals.setup.Registration;
+import com.wingmann.signals.util.TapeTag;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -17,8 +19,6 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import static com.example.examplemod.util.TapeTag.isValidTapeTag;
 
 public class SignalTerminalBlockEntity extends BlockEntity {
 
@@ -37,19 +37,19 @@ public class SignalTerminalBlockEntity extends BlockEntity {
 
     public void tickServer() {
         ItemStack tape = itemHandler.getStackInSlot(0);
-        if (tape.getItem() == Registration.TAPE_ITEM.get() && isValidTapeTag(tape.getTag())) {
+        if (tape.getItem() == Registration.TAPE_ITEM.get() && TapeTag.isValidTapeTag(tape.getTag())) {
             // We have a valid tape + tape NBT
             TapeTag tag = new TapeTag(tape.getTag());
             if(tag.isEmpty()) {
                 // Empty data
                 // TODO: Generate or get signal data?
-                if (level != null) {
-                    tag.signalId = level.random.nextIntBetweenInclusive(1, 10);
-                    tag.signalName = "Signal " + tag.signalId;
-                }
+                assert level != null;
+                // Get random signal and assign it to the tape
+                SignalData signalData = SignalDataRegistry.getRegistry().getRandomSignalData(level.random);
+                tag.signalId = signalData.id;
             } else {
                 // Do processing
-                tag.downloadProgress += 0.141f/20;
+                tag.downloadProgress += 1f/200f * tag.getData().downloadTimeMultiplier; // 10 seconds default * multiplier
                 tag.downloadProgress = Math.min(tag.downloadProgress, 1);
             }
             tape.setTag(tag.toCompoundTag());

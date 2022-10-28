@@ -1,15 +1,13 @@
-package com.example.examplemod.util;
+package com.wingmann.signals.util;
 
+import com.wingmann.signals.registry.SignalData;
+import com.wingmann.signals.registry.SignalDataRegistry;
 import net.minecraft.nbt.CompoundTag;
 
 public class TapeTag {
-    public String signalName = "Missing Name";
-    public String signalDescription = "Missing Description";
     public float downloadProgress = 0;
     public float filterProgress = 0;
-
-    public int signalId = -1; // -1 signifies empty
-
+    public String signalId = "unknown";
     private final CompoundTag internalTag;
 
     /**
@@ -25,12 +23,6 @@ public class TapeTag {
      */
     public TapeTag(CompoundTag tag) {
         internalTag = tag;
-        if(tag.contains("signalName")) {
-            signalName = tag.getString("signalName");
-        }
-        if(tag.contains("signalDescription")) {
-            signalDescription = tag.getString("signalDescription");
-        }
         if(tag.contains("downloadProgress")) {
             downloadProgress = tag.getFloat("downloadProgress");
         }
@@ -38,22 +30,27 @@ public class TapeTag {
             filterProgress = tag.getFloat("filterProgress");
         }
         if(tag.contains("signalId")) {
-            signalId = tag.getInt("signalId");
+            signalId = tag.getString("signalId");
         }
     }
+
+    /**
+     * Get the signal data for this tape.
+     */
+    public SignalData getData() {
+        return SignalDataRegistry.getRegistry().getSignalData(signalId);
+    }
+
     public CompoundTag toCompoundTag() {
-        internalTag.putString("signalName", signalName);
-        internalTag.putString("signalDescription", signalDescription);
         internalTag.putFloat("downloadProgress", downloadProgress);
         internalTag.putFloat("filterProgress", filterProgress);
-        internalTag.putInt("signalId", signalId);
+        internalTag.putString("signalId", signalId);
         return internalTag;
     }
     public boolean isEmpty() {
-        return signalId == -1;
+        return signalId.equals("unknown");
     }
     public static boolean isValidTapeTag(CompoundTag other) {
-        return other != null && !other.isEmpty() && other.contains("signalName") && other.contains("signalDescription") && other.contains("downloadProgress") && other.contains("filterProgress")
-                && other.contains("signalId");
+        return other != null && !other.isEmpty() && other.contains("downloadProgress") && other.contains("filterProgress") && other.contains("signalId");
     }
 }

@@ -1,4 +1,4 @@
-package com.example.examplemod.setup;
+package com.wingmann.signals.setup;
 
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -13,6 +13,6 @@ public class ModSetup {
         }
     };
     public static void init(final FMLCommonSetupEvent event) {
-
+        // TODO: Load in signal registry data
     }
 }

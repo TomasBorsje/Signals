@@ -1,4 +1,4 @@
-package com.example.examplemod.datagen;
+package com.wingmann.signals.datagen;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

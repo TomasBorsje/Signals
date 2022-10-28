@@ -7,5 +7,15 @@
   "itemGroup.signals": "Signals",
   "message.signal_terminal": "Message Signal Terminal",
   "screen.signals.signal_terminal": "Screen Signal Terminal",
-  "signals.empty_tape": "Empty"
+  "signals.empty_tape": "Empty",
+  "signals.signal.basic1": "Nearby Asteroid",
+  "signals.signal.basic1_description": "A nearby asteroid. Downloads very quickly.",
+  "signals.signal.basic2": "Distant Exoplanet",
+  "signals.signal.basic2_description": "A distant exoplanet. Slow download speed.",
+  "signals.signal.unknown_signal": "Unknown Signal",
+  "signals.signal.unknown_signal_description": "This signal is unknown.",
+  "signals.tooltips.download_title": "Download Progress:",
+  "signals.tooltips.signal_description_title": "Signal Description:",
+  "signals.tooltips.signal_name_title": "Signal Name: ",
+  "signals.ui.signal_terminal_title": "Signal Terminal"
 }

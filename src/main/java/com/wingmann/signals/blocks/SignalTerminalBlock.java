@@ -1,7 +1,7 @@
-package com.example.examplemod.blocks;
+package com.wingmann.signals.blocks;
 
-import com.example.examplemod.blockentities.SignalTerminalBlockEntity;
-import com.example.examplemod.containers.SignalTerminalContainer;
+import com.wingmann.signals.blockentities.SignalTerminalBlockEntity;
+import com.wingmann.signals.containers.SignalTerminalContainer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;

@@ -1,6 +1,7 @@
-package com.example.examplemod.items;
+package com.wingmann.signals.items;
 
-import com.example.examplemod.util.TapeTag;
+import com.wingmann.signals.setup.Registration;
+import com.wingmann.signals.util.TapeTag;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
@@ -16,13 +17,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static com.example.examplemod.setup.Registration.ITEM_PROPERTIES;
-import static com.example.examplemod.util.TapeTag.isValidTapeTag;
-
 public class TapeItem extends Item {
 
     public TapeItem() {
-        super(ITEM_PROPERTIES.stacksTo(1));
+        super(Registration.ITEM_PROPERTIES.stacksTo(1));
     }
 
     private static final int DOWNLOAD_BAR_LENGTH = 40;
@@ -52,7 +50,7 @@ public class TapeItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level p_41422_, List<Component> components, TooltipFlag p_41424_) {
-        if(stack.hasTag() && isValidTapeTag(stack.getTag())) {
+        if(stack.hasTag() && TapeTag.isValidTapeTag(stack.getTag())) {
             TapeTag tapeTag = new TapeTag(stack.getTag());
             if(tapeTag.isEmpty()) {
                 // Show empty tooltip
@@ -60,10 +58,10 @@ public class TapeItem extends Item {
             } else {
                 // Show filled tooltip
                 // Signal Name
-                components.add(Component.literal("Signal Name: ").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x5555FF))).append(Component.translatable(tapeTag.signalName).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xffffff)))));
+                components.add(Component.translatable("signals.tooltips.signal_name_title").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x5555FF))).append(Component.translatable(tapeTag.getData().signalName).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xffffff)))));
                 // Signal Description
-                components.add(Component.literal("Signal Description: ").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x5555FF))));
-                components.add(Component.literal(tapeTag.signalDescription).withStyle(Style.EMPTY.withItalic(true).withColor(TextColor.fromRgb(0x555555))));
+                components.add(Component.translatable("signals.tooltips.signal_description_title").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x5555FF))));
+                components.add(Component.translatable(tapeTag.getData().signalDescription).withStyle(Style.EMPTY.withItalic(true).withColor(TextColor.fromRgb(0xA3A3A3))));
                 // Download Progress
                 int downloadColour;
                 if (tapeTag.downloadProgress == 1) {
@@ -78,7 +76,7 @@ public class TapeItem extends Item {
                 int completedBars = (int) (tapeTag.downloadProgress * DOWNLOAD_BAR_LENGTH);
                 String downloadBar = "[" + StringUtils.repeat('|', completedBars) + StringUtils.repeat('.', DOWNLOAD_BAR_LENGTH - completedBars) + "] (" + String.format("%.1f",tapeTag.downloadProgress * 100) + "%)";
 
-                components.add(Component.literal("Download Progress: ").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x5555FF))));
+                components.add(Component.translatable("signals.tooltips.download_title").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x5555FF))));
                 components.add(Component.literal(downloadBar).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(downloadColour))));
             }
         }

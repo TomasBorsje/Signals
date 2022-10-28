@@ -1,9 +1,10 @@
-package com.example.examplemod.setup;
+package com.wingmann.signals.setup;
 
-import com.example.examplemod.blockentities.SignalTerminalBlockEntity;
-import com.example.examplemod.blocks.SignalTerminalBlock;
-import com.example.examplemod.containers.SignalTerminalContainer;
-import com.example.examplemod.items.TapeItem;
+import com.wingmann.signals.blockentities.SignalTerminalBlockEntity;
+import com.wingmann.signals.blocks.SignalTerminalBlock;
+import com.wingmann.signals.containers.SignalTerminalContainer;
+import com.wingmann.signals.items.TapeItem;
+import com.wingmann.signals.Signals;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -18,13 +19,11 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import static com.example.examplemod.Signals.MODID;
-
 public class Registration {
-    private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
-    private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
-    private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, MODID);
-    private static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, MODID);
+    private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Signals.MODID);
+    private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Signals.MODID);
+    private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Signals.MODID);
+    private static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, Signals.MODID);
 
     public static void init() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();

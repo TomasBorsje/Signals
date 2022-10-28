@@ -1,7 +1,7 @@
-package com.example.examplemod.setup;
+package com.wingmann.signals.setup;
 
-import com.example.examplemod.Signals;
-import com.example.examplemod.screens.SignalTerminalScreen;
+import com.wingmann.signals.Signals;
+import com.wingmann.signals.screens.SignalTerminalScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.common.Mod;
