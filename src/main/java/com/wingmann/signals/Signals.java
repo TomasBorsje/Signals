@@ -1,9 +1,10 @@
 package com.wingmann.signals;
 
+import com.mojang.logging.LogUtils;
+import com.wingmann.signals.config.SignalsConfig;
 import com.wingmann.signals.setup.ClientSetup;
 import com.wingmann.signals.setup.ModSetup;
 import com.wingmann.signals.setup.Registration;
-import com.mojang.logging.LogUtils;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
@@ -20,7 +21,7 @@ public class Signals
     public Signals()
     {
         Registration.init();
-
+        SignalsConfig.register();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         // Register 'ModSetup::init' to be called at mod setup time (server and client)

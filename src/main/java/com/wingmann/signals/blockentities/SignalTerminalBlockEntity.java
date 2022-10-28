@@ -1,5 +1,6 @@
 package com.wingmann.signals.blockentities;
 
+import com.wingmann.signals.config.SignalsConfig;
 import com.wingmann.signals.items.TapeItem;
 import com.wingmann.signals.registry.SignalData;
 import com.wingmann.signals.registry.SignalDataRegistry;
@@ -49,7 +50,7 @@ public class SignalTerminalBlockEntity extends BlockEntity {
                 tag.signalId = signalData.id;
             } else {
                 // Do processing
-                tag.downloadProgress += 1f/200f * tag.getData().downloadTimeMultiplier; // 10 seconds default * multiplier
+                tag.downloadProgress += 1f/200f * tag.getData().downloadTimeMultiplier * SignalsConfig.GLOBAL_DOWNLOAD_SPEED_MULTIPLIER.get(); // 10 seconds default * multiplier
                 tag.downloadProgress = Math.min(tag.downloadProgress, 1);
             }
             tape.setTag(tag.toCompoundTag());
