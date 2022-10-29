@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "signals:block/exo_mining_station"
+    }
+  }
+}

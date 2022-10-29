@@ -16,13 +16,13 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 
 import static com.wingmann.signals.items.TapeItem.isTapeItem;
 
-public class SignalTerminalContainer extends AbstractContainerMenu {
+public class ExoMiningStationContainer extends AbstractContainerMenu {
     private BlockEntity blockEntity;
     private Player playerEntity;
     private IItemHandler playerInventory;
 
-    public SignalTerminalContainer(int windowId, BlockPos pos, Inventory playerInventory, Player player) {
-        super(Registration.SIGNAL_TERMINAL_CONTAINER.get(), windowId);
+    public ExoMiningStationContainer(int windowId, BlockPos pos, Inventory playerInventory, Player player) {
+        super(Registration.EXO_MINING_STATION_CONTAINER.get(), windowId);
         blockEntity = player.getCommandSenderWorld().getBlockEntity(pos);
         this.playerEntity = player;
         this.playerInventory = new InvWrapper(playerInventory);
@@ -38,7 +38,7 @@ public class SignalTerminalContainer extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player playerIn) {
-        return stillValid(ContainerLevelAccess.create(blockEntity.getLevel(), blockEntity.getBlockPos()), playerEntity, Registration.SIGNAL_TERMINAL.get());
+        return stillValid(ContainerLevelAccess.create(blockEntity.getLevel(), blockEntity.getBlockPos()), playerEntity, Registration.EXO_MINING_STATION.get());
     }
 
     @Override

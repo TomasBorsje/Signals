@@ -1,12 +1,13 @@
 {
+  "block.signals.exo_mining_station": "Exo-Mining Station",
   "block.signals.satellite_antenna": "Satellite Antenna",
   "block.signals.satellite_dish_frame": "Satellite Dish Frame",
   "block.signals.satellite_dish_support": "Satellite Dish Support",
   "block.signals.signal_terminal": "Signal Terminal",
   "item.signals.tape": "Tape",
   "itemGroup.signals": "Signals",
-  "message.signal_terminal": "Message Signal Terminal",
-  "screen.signals.signal_terminal": "Screen Signal Terminal",
+  "screen.signals.exo_mining_station": "Exo-Mining Station",
+  "screen.signals.signal_terminal": "Signal Terminal",
   "signals.empty_tape": "Empty",
   "signals.signal.basic1": "Nearby Asteroid",
   "signals.signal.basic1_description": "A nearby asteroid. Downloads very quickly.",
@@ -17,5 +18,7 @@
   "signals.tooltips.download_title": "Download Progress:",
   "signals.tooltips.signal_description_title": "Signal Description:",
   "signals.tooltips.signal_name_title": "Signal Name: ",
-  "signals.ui.signal_terminal_title": "Signal Terminal"
+  "signals.ui.signal_terminal_title": "Signal Terminal",
+  "tooltip.signals.exo_mining_station_description": "A station in charge of sending exo-miner drones to harvest valuable resources from outer space.",
+  "tooltip.signals.signal_terminal_description": "A satellite terminal that allows the user to download extraterrestrial signals and store them onto tapes."
 }

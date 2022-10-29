@@ -1,10 +1,13 @@
 package com.wingmann.signals.setup;
 
+import com.wingmann.signals.Signals;
+import com.wingmann.signals.blockentities.ExoMiningStationBlockEntity;
 import com.wingmann.signals.blockentities.SignalTerminalBlockEntity;
+import com.wingmann.signals.blocks.ExoMiningStationBlock;
 import com.wingmann.signals.blocks.SignalTerminalBlock;
+import com.wingmann.signals.containers.ExoMiningStationContainer;
 import com.wingmann.signals.containers.SignalTerminalContainer;
 import com.wingmann.signals.items.TapeItem;
-import com.wingmann.signals.Signals;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -45,12 +48,19 @@ public class Registration {
     static final BlockBehaviour.Properties METAL_BLOCK_NO_OCCLUSION_PROPERTIES = METAL_BLOCK_PROPERTIES.noOcclusion();
     public static final Item.Properties ITEM_PROPERTIES = new Item.Properties().tab(ModSetup.ITEM_TAB);
 
-    ///// Machines /////
+    ///// Signal Terminal /////
     public static final RegistryObject<Block> SIGNAL_TERMINAL = BLOCKS.register("signal_terminal", SignalTerminalBlock::new);
     public static final RegistryObject<Item> SIGNAL_TERMINAL_ITEM = fromBlock(SIGNAL_TERMINAL);
     public static final RegistryObject<BlockEntityType<SignalTerminalBlockEntity>> SIGNAL_TERMINAL_BLOCK_ENTITY = BLOCK_ENTITIES.register("signal_terminal", () -> BlockEntityType.Builder.of(SignalTerminalBlockEntity::new, SIGNAL_TERMINAL.get()).build(null));
     public static final RegistryObject<MenuType<SignalTerminalContainer>> SIGNAL_TERMINAL_CONTAINER = CONTAINERS.register("signal_terminal",
             () -> IForgeMenuType.create((windowId, inv, data) -> new SignalTerminalContainer(windowId, data.readBlockPos(), inv, inv.player)));
+
+    ///// Exo-Mining Station /////
+    public static final RegistryObject<Block> EXO_MINING_STATION = BLOCKS.register("exo_mining_station", ExoMiningStationBlock::new);
+    public static final RegistryObject<Item> EXO_MINING_STATION_ITEM = fromBlock(EXO_MINING_STATION);
+    public static final RegistryObject<BlockEntityType<ExoMiningStationBlockEntity>> EXO_MINING_STATION_BLOCK_ENTITY = BLOCK_ENTITIES.register("exo_mining_station", () -> BlockEntityType.Builder.of(ExoMiningStationBlockEntity::new, EXO_MINING_STATION.get()).build(null));
+    public static final RegistryObject<MenuType<ExoMiningStationContainer>> EXO_MINING_STATION_CONTAINER = CONTAINERS.register("exo_mining_station",
+            () -> IForgeMenuType.create((windowId, inv, data) -> new ExoMiningStationContainer(windowId, data.readBlockPos(), inv, inv.player)));
 
     ///// Normal Blocks /////
     public static final RegistryObject<Block> SATELLITE_DISH_FRAME = BLOCKS.register("satellite_dish_frame", () -> new Block(METAL_BLOCK_PROPERTIES));

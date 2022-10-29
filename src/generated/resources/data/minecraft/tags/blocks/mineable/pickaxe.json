@@ -3,6 +3,7 @@
     "signals:signal_terminal",
     "signals:satellite_dish_frame",
     "signals:satellite_dish_support",
-    "signals:satellite_antenna"
+    "signals:satellite_antenna",
+    "signals:exo_mining_station"
   ]
 }

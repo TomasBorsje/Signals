@@ -1,20 +1,20 @@
 package com.wingmann.signals.screens;
 
-import com.wingmann.signals.Signals;
-import com.wingmann.signals.blocks.SignalTerminalBlock;
-import com.wingmann.signals.containers.SignalTerminalContainer;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.wingmann.signals.Signals;
+import com.wingmann.signals.blocks.ExoMiningStationBlock;
+import com.wingmann.signals.containers.ExoMiningStationContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class SignalTerminalScreen extends AbstractContainerScreen<SignalTerminalContainer> {
-    private final ResourceLocation GUI = new ResourceLocation(Signals.MODID, "textures/gui/signal_terminal_gui.png");
+public class ExoMiningStationScreen extends AbstractContainerScreen<ExoMiningStationContainer> {
+    private final ResourceLocation GUI = new ResourceLocation(Signals.MODID, "textures/gui/exo_mining_station_gui.png");
 
-    public SignalTerminalScreen(SignalTerminalContainer container, Inventory inv, Component name) {
+    public ExoMiningStationScreen(ExoMiningStationContainer container, Inventory inv, Component name) {
         super(container, inv, name);
     }
 
@@ -29,7 +29,7 @@ public class SignalTerminalScreen extends AbstractContainerScreen<SignalTerminal
 
     @Override
     protected void renderLabels(PoseStack matrixStack, int mouseX, int mouseY) {
-        drawString(matrixStack, Minecraft.getInstance().font, Component.translatable(SignalTerminalBlock.SCREEN_SIGNAL_TERMINAL), 10, 10, 0xffffff);
+        drawString(matrixStack, Minecraft.getInstance().font, Component.translatable(ExoMiningStationBlock.SCREEN_EXO_MINING_STATION), 10, 10, 0xffffff);
 
     }
 

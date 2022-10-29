@@ -1,6 +1,7 @@
 package com.wingmann.signals.datagen;
 
 import com.wingmann.signals.Signals;
+import com.wingmann.signals.blocks.ExoMiningStationBlock;
 import com.wingmann.signals.blocks.SignalTerminalBlock;
 import com.wingmann.signals.setup.Registration;
 import com.wingmann.signals.setup.ModSetup;
@@ -19,8 +20,14 @@ public class SignalsLanguageProvider extends LanguageProvider {
         add(Registration.SATELLITE_DISH_FRAME.get(), "Satellite Dish Frame");
         add(Registration.SATELLITE_DISH_SUPPORT.get(), "Satellite Dish Support");
         add(Registration.SATELLITE_ANTENNA.get(), "Satellite Antenna");
-        add(SignalTerminalBlock.MESSAGE_SIGNAL_TERMINAL, "Message Signal Terminal");
-        add(SignalTerminalBlock.SCREEN_SIGNAL_TERMINAL, "Screen Signal Terminal");
+        add(SignalTerminalBlock.DESCRIPTION, "A satellite terminal that allows the user to download extraterrestrial signals and store them onto tapes.");
+        add(SignalTerminalBlock.SCREEN_SIGNAL_TERMINAL, "Signal Terminal");
+
+        // Exo-Mining Station
+        add(ExoMiningStationBlock.DESCRIPTION, "A station in charge of sending exo-miner drones to harvest valuable resources from outer space.");
+        add(ExoMiningStationBlock.SCREEN_EXO_MINING_STATION, "Exo-Mining Station");
+        add(Registration.EXO_MINING_STATION.get(), "Exo-Mining Station");
+
         add(Registration.TAPE_ITEM.get(), "Tape");
         add("signals.empty_tape", "Empty");
         // Signal data tooltip

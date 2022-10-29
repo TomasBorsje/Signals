@@ -1,7 +1,7 @@
 package com.wingmann.signals.blocks;
 
-import com.wingmann.signals.blockentities.SignalTerminalBlockEntity;
-import com.wingmann.signals.containers.SignalTerminalContainer;
+import com.wingmann.signals.blockentities.ExoMiningStationBlockEntity;
+import com.wingmann.signals.containers.ExoMiningStationContainer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
@@ -30,12 +31,11 @@ import net.minecraftforge.network.NetworkHooks;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class SignalTerminalBlock extends Block implements EntityBlock {
+public class ExoMiningStationBlock extends Block implements EntityBlock {
+    public static final String DESCRIPTION = "tooltip.signals.exo_mining_station_description";
+    public static final String SCREEN_EXO_MINING_STATION = "screen.signals.exo_mining_station";
 
-    public static final String DESCRIPTION = "tooltip.signals.signal_terminal_description";
-    public static final String SCREEN_SIGNAL_TERMINAL = "screen.signals.signal_terminal";
-
-    public SignalTerminalBlock() {
+    public ExoMiningStationBlock() {
         super(Properties.of(Material.METAL)
                 .sound(SoundType.METAL)
                 .strength(2.0f)
@@ -51,7 +51,7 @@ public class SignalTerminalBlock extends Block implements EntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new SignalTerminalBlockEntity(blockPos, blockState);
+        return new ExoMiningStationBlockEntity(blockPos, blockState);
     }
 
     @Nullable
@@ -61,27 +61,33 @@ public class SignalTerminalBlock extends Block implements EntityBlock {
             return null;
         }
         return (lvl, pos, blockState, t) -> {
-            if (t instanceof SignalTerminalBlockEntity tile) {
+            if (t instanceof ExoMiningStationBlockEntity tile) {
                 tile.tickServer();
             }
         };
     }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+    }
+
 
     @SuppressWarnings("deprecation")
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult trace) {
         if (!level.isClientSide) {
             BlockEntity be = level.getBlockEntity(pos);
-            if (be instanceof SignalTerminalBlockEntity) {
+            if (be instanceof ExoMiningStationBlockEntity) {
                 MenuProvider containerProvider = new MenuProvider() {
                     @Override
                     public Component getDisplayName() {
-                        return Component.translatable(SCREEN_SIGNAL_TERMINAL);
+                        return Component.translatable(SCREEN_EXO_MINING_STATION);
                     }
 
                     @Override
                     public AbstractContainerMenu createMenu(int windowId, Inventory playerInventory, Player playerEntity) {
-                        return new SignalTerminalContainer(windowId, pos, playerInventory, playerEntity);
+                        return new ExoMiningStationContainer(windowId, pos, playerInventory, playerEntity);
                     }
                 };
                 NetworkHooks.openScreen((ServerPlayer) player, containerProvider, be.getBlockPos());

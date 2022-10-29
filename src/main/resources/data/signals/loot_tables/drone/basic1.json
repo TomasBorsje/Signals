@@ -1,0 +1,40 @@
+{
+  "name": "basic1",
+  "type": "signals:drone",
+  "pools": [
+    {
+      "rolls": {
+        "min": 6,
+        "max": 10
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:raw_iron_block"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 2,
+        "max": 4
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:raw_gold_block"
+        }
+      ]
+    },
+    {
+      "rolls": 3,
+      "bonus_rolls": 5,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:raw_copper_block"
+        }
+      ]
+    }
+  ]
+}

@@ -18,12 +18,14 @@ public class SignalsBlockTags extends BlockTagsProvider {
                 .add(Registration.SIGNAL_TERMINAL.get())
                 .add(Registration.SATELLITE_DISH_FRAME.get())
                 .add(Registration.SATELLITE_DISH_SUPPORT.get())
-                .add(Registration.SATELLITE_ANTENNA.get());
+                .add(Registration.SATELLITE_ANTENNA.get())
+                .add(Registration.EXO_MINING_STATION.get());
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(Registration.SIGNAL_TERMINAL.get())
                 .add(Registration.SATELLITE_DISH_FRAME.get())
                 .add(Registration.SATELLITE_DISH_SUPPORT.get())
-                .add(Registration.SATELLITE_ANTENNA.get());
+                .add(Registration.SATELLITE_ANTENNA.get())
+                .add(Registration.EXO_MINING_STATION.get());
     }
 
     @Override

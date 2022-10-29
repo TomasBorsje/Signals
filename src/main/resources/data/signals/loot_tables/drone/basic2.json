@@ -1,0 +1,16 @@
+{
+  "name": "basic2",
+  "type": "signals:drone",
+  "pools": [
+    {
+      "rolls": 13,
+      "bonus_rolls": 17,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:ender_pearl"
+        }
+      ]
+    }
+  ]
+}

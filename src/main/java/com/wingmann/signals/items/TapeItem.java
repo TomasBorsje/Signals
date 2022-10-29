@@ -82,4 +82,8 @@ public class TapeItem extends Item {
         }
         super.appendHoverText(stack, p_41422_, components, p_41424_);
     }
+
+    public static boolean isTapeItem(ItemStack stack) {
+        return stack != ItemStack.EMPTY && stack.getItem() instanceof TapeItem;
+    }
 }
