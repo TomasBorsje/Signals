@@ -8,6 +8,8 @@
   "itemGroup.signals": "Signals",
   "screen.signals.exo_mining_station": "Exo-Mining Station",
   "screen.signals.signal_terminal": "Signal Terminal",
+  "signals.book.description": "Welcome to the Signals guidebook for MC 1.19.2",
+  "signals.book.title": "Signals And You",
   "signals.empty_tape": "Empty",
   "signals.signal.basic1": "Nearby Asteroid",
   "signals.signal.basic1_description": "A nearby asteroid. Downloads very quickly.",

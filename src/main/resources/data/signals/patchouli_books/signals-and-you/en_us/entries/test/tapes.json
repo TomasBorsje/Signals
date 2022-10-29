@@ -1,0 +1,11 @@
+{
+  "name": "Tapes",
+  "icon": "signals:tape",
+  "category": "signals:signal_processing",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Tapes store signals from signal terminals, and are used to transfer signal data from one machine to another."
+    }
+  ]
+}

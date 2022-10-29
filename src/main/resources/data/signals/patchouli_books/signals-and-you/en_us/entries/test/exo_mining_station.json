@@ -1,0 +1,11 @@
+{
+  "name": "Exo-Mining Station",
+  "icon": "signals:exo_mining_station",
+  "category": "signals:exo_mining",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Exo-Mining Station is in charge of sending an exo-drone to the source of a signal in search of precious resources."
+    }
+  ]
+}

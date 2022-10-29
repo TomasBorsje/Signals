@@ -1,0 +1,11 @@
+{
+  "name": "Signal Terminal",
+  "icon": "signals:signal_terminal",
+  "category": "signals:signal_gathering",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The signal terminal will download random signals it receives and store them onto tapes."
+    }
+  ]
+}

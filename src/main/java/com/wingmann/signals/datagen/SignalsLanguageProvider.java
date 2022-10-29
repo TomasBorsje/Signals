@@ -44,5 +44,12 @@ public class SignalsLanguageProvider extends LanguageProvider {
         add("signals.signal.basic1_description", "A nearby asteroid. Downloads very quickly.");
         add("signals.signal.basic2", "Distant Exoplanet");
         add("signals.signal.basic2_description", "A distant exoplanet. Slow download speed.");
+
+        addPatchouliBook();
+    }
+
+    private void addPatchouliBook() {
+        add("signals.book.title", "Signals And You");
+        add("signals.book.description", "Welcome to the Signals guidebook for MC 1.19.2");
     }
 }
