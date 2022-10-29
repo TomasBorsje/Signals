@@ -66,6 +66,15 @@ public class SignalTerminalBlockEntity extends BlockEntity {
         super.load(tag);
     }
 
+    public SignalData tryGetSignalData() {
+        ItemStack tape = itemHandler.getStackInSlot(0);
+        if(tape.getItem() == Registration.TAPE_ITEM.get() && TapeTag.isValidTapeTag(tape.getTag())) {
+            TapeTag tapeTag = new TapeTag(tape.getTag());
+            return tapeTag.getData();
+        }
+        return null;
+    }
+
     @Override
     public void saveAdditional(CompoundTag tag) {
         tag.put("Inventory", itemHandler.serializeNBT());

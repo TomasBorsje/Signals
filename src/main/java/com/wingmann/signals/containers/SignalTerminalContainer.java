@@ -1,5 +1,6 @@
 package com.wingmann.signals.containers;
 
+import com.wingmann.signals.blockentities.SignalTerminalBlockEntity;
 import com.wingmann.signals.setup.Registration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
@@ -34,6 +35,10 @@ public class SignalTerminalContainer extends AbstractContainerMenu {
         }
 
         layoutPlayerInventorySlots(10, 70);
+    }
+
+    public SignalTerminalBlockEntity getBlockEntity() {
+        return (SignalTerminalBlockEntity) blockEntity;
     }
 
     @Override

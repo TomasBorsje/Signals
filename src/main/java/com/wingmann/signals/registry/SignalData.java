@@ -25,12 +25,15 @@ public class SignalData {
      */
     public final float downloadTimeMultiplier;
 
+    public final String signalPreviewTexture;
+
     public SignalData(String id, String signalName, String signalDescription, String lootTableName,
-                      float downloadTimeMultiplier) {
+                      float downloadTimeMultiplier, String signalPreviewTexture) {
         this.id = id;
         this.signalName = signalName;
         this.signalDescription = signalDescription;
         this.lootTableName = lootTableName;
         this.downloadTimeMultiplier = downloadTimeMultiplier;
+        this.signalPreviewTexture = signalPreviewTexture;
     }
 }

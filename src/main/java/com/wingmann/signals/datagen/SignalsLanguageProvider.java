@@ -50,6 +50,6 @@ public class SignalsLanguageProvider extends LanguageProvider {
 
     private void addPatchouliBook() {
         add("signals.book.title", "Signals And You");
-        add("signals.book.description", "Welcome to the Signals guidebook for MC 1.19.2");
+        add("signals.book.description", "Signals is a space-based resource generation mod focused on detecting signals from outer planets and investigating them for loot.");
     }
 }
