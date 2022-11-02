@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "signals",
+  "key": {
+    "I": {
+      "tag": "forge:storage_blocks/iron"
+    },
+    "b": {
+      "item": "minecraft:iron_bars"
+    }
+  },
+  "pattern": [
+    "IbI",
+    "b b",
+    "IbI"
+  ],
+  "result": {
+    "count": 4,
+    "item": "signals:satellite_dish_support"
+  }
+}

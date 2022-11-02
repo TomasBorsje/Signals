@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "signals",
+  "key": {
+    "C": {
+      "item": "signals:circuit_board"
+    },
+    "I": {
+      "tag": "forge:storage_blocks/iron"
+    },
+    "b": {
+      "tag": "forge:dyes/black"
+    }
+  },
+  "pattern": [
+    "bIb",
+    "ICI",
+    "bIb"
+  ],
+  "result": {
+    "item": "signals:satellite_antenna"
+  }
+}

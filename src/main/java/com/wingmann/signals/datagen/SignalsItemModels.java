@@ -20,5 +20,6 @@ public class SignalsItemModels extends ItemModelProvider {
         withExistingParent(Registration.EXO_MINING_STATION.getId().getPath(), modLoc("block/exo_mining_station"));
         // Add a single texture with tape item
         singleTexture(Registration.TAPE_ITEM.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/tape"));
+        singleTexture(Registration.CIRCUIT_BOARD.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/circuit_board"));
     }
 }

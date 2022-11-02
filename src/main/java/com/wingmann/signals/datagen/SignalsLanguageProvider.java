@@ -3,8 +3,8 @@ package com.wingmann.signals.datagen;
 import com.wingmann.signals.Signals;
 import com.wingmann.signals.blocks.ExoMiningStationBlock;
 import com.wingmann.signals.blocks.SignalTerminalBlock;
-import com.wingmann.signals.setup.Registration;
 import com.wingmann.signals.setup.ModSetup;
+import com.wingmann.signals.setup.Registration;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 
@@ -14,28 +14,40 @@ public class SignalsLanguageProvider extends LanguageProvider {
     }
     @Override
     protected void addTranslations() {
-        // TODO: Split this up into multiple methods
-        add("itemGroup." + ModSetup.TAB_NAME, "Signals");
+        addBlocks();
+        addItems();
+        addPatchouliBook();
+        addSignal();
+        addTooltips();
+        addUI();
+    }
+
+    private void addBlocks() {
         add(Registration.SIGNAL_TERMINAL.get(), "Signal Terminal");
         add(Registration.SATELLITE_DISH_FRAME.get(), "Satellite Dish Frame");
         add(Registration.SATELLITE_DISH_SUPPORT.get(), "Satellite Dish Support");
         add(Registration.SATELLITE_ANTENNA.get(), "Satellite Antenna");
-        add(SignalTerminalBlock.DESCRIPTION, "A satellite terminal that allows the user to download extraterrestrial signals and store them onto tapes.");
-        add(SignalTerminalBlock.SCREEN_SIGNAL_TERMINAL, "Signal Terminal");
-
         // Exo-Mining Station
-        add(ExoMiningStationBlock.DESCRIPTION, "A station in charge of sending exo-miner drones to harvest valuable resources from outer space.");
-        add(ExoMiningStationBlock.SCREEN_EXO_MINING_STATION, "Exo-Mining Station");
         add(Registration.EXO_MINING_STATION.get(), "Exo-Mining Station");
+    }
 
-        add(Registration.TAPE_ITEM.get(), "Tape");
-        add("signals.empty_tape", "Empty");
-        // Signal data tooltip
+    private void addUI() {
+        add("itemGroup." + ModSetup.TAB_NAME, "Signals");
+        add("signals.ui.signal_terminal_title", "Signal Terminal");
+        add(SignalTerminalBlock.SCREEN_SIGNAL_TERMINAL, "Signal Terminal");
+        add(ExoMiningStationBlock.SCREEN_EXO_MINING_STATION, "Exo-Mining Station");
+    }
+
+    private void addTooltips() {
         add("signals.tooltips.signal_name_title", "Signal Name: ");
         add("signals.tooltips.signal_description_title", "Signal Description:");
         add("signals.tooltips.download_title", "Download Progress:");
-        // UI
-        add("signals.ui.signal_terminal_title", "Signal Terminal");
+        add("signals.empty_tape", "Empty");
+        add(ExoMiningStationBlock.DESCRIPTION, "A station in charge of sending exo-miner drones to harvest valuable resources from outer space.");
+        add(SignalTerminalBlock.DESCRIPTION, "A satellite terminal that allows the user to download extraterrestrial signals and store them onto tapes.");
+    }
+
+    private void addSignal() {
         // Unknown Signal
         add("signals.signal.unknown_signal", "Unknown Signal");
         add("signals.signal.unknown_signal_description", "This signal is unknown.");
@@ -44,12 +56,15 @@ public class SignalsLanguageProvider extends LanguageProvider {
         add("signals.signal.basic1_description", "A nearby asteroid. Downloads very quickly.");
         add("signals.signal.basic2", "Distant Exoplanet");
         add("signals.signal.basic2_description", "A distant exoplanet. Slow download speed.");
-
-        addPatchouliBook();
     }
 
     private void addPatchouliBook() {
         add("signals.book.title", "Signals And You");
         add("signals.book.description", "Signals is a space-based resource generation mod focused on detecting signals from outer planets and investigating them for loot.");
+    }
+
+    private void addItems() {
+        add(Registration.TAPE_ITEM.get(), "Tape");
+        add(Registration.CIRCUIT_BOARD.get(), "Circuit Board");
     }
 }

@@ -72,5 +72,6 @@ public class Registration {
 
     ///// Items /////
     public static final RegistryObject<Item> TAPE_ITEM = ITEMS.register("tape", TapeItem::new);
+    public static final RegistryObject<Item> CIRCUIT_BOARD = ITEMS.register("circuit_board", () -> new Item(ITEM_PROPERTIES));
 
 }

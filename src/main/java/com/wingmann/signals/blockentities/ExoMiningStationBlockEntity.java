@@ -31,6 +31,10 @@ public class ExoMiningStationBlockEntity extends BlockEntity {
     private final ItemStackHandler itemHandler = createItemHandler();
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
 
+    public static final int TAPE_SLOT_INDEX = 0;
+    public static final int OUTPUT_SLOT_INDEX = 1;
+    public static final int OUTPUT_SLOT_COUNT = 9;
+
     public ExoMiningStationBlockEntity(BlockPos pos, BlockState state) {
         super(Registration.EXO_MINING_STATION_BLOCK_ENTITY.get(), pos, state);
     }
@@ -42,7 +46,7 @@ public class ExoMiningStationBlockEntity extends BlockEntity {
     }
 
     public void tickServer() {
-        ItemStack tape = itemHandler.getStackInSlot(0);
+        ItemStack tape = itemHandler.getStackInSlot(TAPE_SLOT_INDEX);
         if (tape.getItem() == Registration.TAPE_ITEM.get() && TapeTag.isValidTapeTag(tape.getTag())) {
             // We have a valid tape + tape NBT
             TapeTag tag = new TapeTag(tape.getTag());
@@ -58,23 +62,43 @@ public class ExoMiningStationBlockEntity extends BlockEntity {
      * @param tag The tag to generate the loot table for.
      */
     private void generateLoot(TapeTag tag) {
-        // TODO: Explode loot everywhere!!
         assert level != null;
         assert level.getServer() != null;
         LootContext ctx = new LootContext.Builder((ServerLevel) level).withRandom(level.random).create(LootContextParamSet.builder().build());
         LootTable lootTable = level.getServer().getLootTables().get(new ResourceLocation(Signals.MODID, "drone/"+tag.getData().lootTableName));
-        // Print found loot table
-        System.out.println("Generating loot table: " + lootTable.getLootTableId());
         // Generate loot
         for (ItemStack stack : lootTable.getRandomItems(ctx)) {
-            System.out.println("Generated loot: " + stack);
-            ItemEntity itemEntity = new ItemEntity(level, worldPosition.getX()+0.5f, worldPosition.getY()+1, worldPosition.getZ()+0.5f, stack);
-            float randomX = (level.random.nextFloat() - 0.5f) * 0.2f;
-            float randomY = 1f;
-            float randomZ = (level.random.nextFloat() - 0.5f) * 0.2f;
-            itemEntity.setDeltaMovement(randomX, randomY, randomZ);
-            level.addFreshEntity(itemEntity);
+            ItemStack remainder = tryOutputStack(stack);
+            if(remainder != ItemStack.EMPTY) {
+                spawnItemInWorld(remainder);
+            }
         }
+    }
+
+    /**
+     * Tries to add an itemstack to the output slots of the item handler.
+     * @param stack The stack to try add
+     * @return The remainder
+     */
+    private ItemStack tryOutputStack(ItemStack stack) {
+        ItemStack remainder = stack;
+        for (int i = OUTPUT_SLOT_INDEX; i < OUTPUT_SLOT_COUNT; i++) {
+            remainder = itemHandler.insertItem(i, remainder, false);
+            if(remainder == ItemStack.EMPTY) {
+                break;
+            }
+        }
+        return remainder;
+    }
+
+    private void spawnItemInWorld(ItemStack stack) {
+        assert level != null;
+        ItemEntity itemEntity = new ItemEntity(level, worldPosition.getX()+0.5f, worldPosition.getY()+1, worldPosition.getZ()+0.5f, stack);
+        float randomX = (level.random.nextFloat() - 0.5f) * 0.2f;
+        float randomY = 1f;
+        float randomZ = (level.random.nextFloat() - 0.5f) * 0.2f;
+        itemEntity.setDeltaMovement(randomX, randomY, randomZ);
+        level.addFreshEntity(itemEntity);
     }
 
     @Override
@@ -91,14 +115,17 @@ public class ExoMiningStationBlockEntity extends BlockEntity {
     }
 
     private ItemStackHandler createItemHandler() {
-        return new ItemStackHandler(1) {
+        return new ItemStackHandler(1 + OUTPUT_SLOT_COUNT) {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();
             }
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                return isTapeItem(stack);
+                if(slot == TAPE_SLOT_INDEX) {
+                    return isTapeItem(stack);
+                }
+                else return slot >= OUTPUT_SLOT_INDEX && slot < OUTPUT_SLOT_INDEX + OUTPUT_SLOT_COUNT;
             }
             @Nonnull
             @Override

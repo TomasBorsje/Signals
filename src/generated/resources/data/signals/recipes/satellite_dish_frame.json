@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "signals",
+  "key": {
+    "C": {
+      "item": "signals:circuit_board"
+    },
+    "I": {
+      "tag": "forge:storage_blocks/iron"
+    },
+    "i": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "pattern": [
+    "IiI",
+    "iCi",
+    "IiI"
+  ],
+  "result": {
+    "count": 4,
+    "item": "signals:satellite_dish_frame"
+  }
+}

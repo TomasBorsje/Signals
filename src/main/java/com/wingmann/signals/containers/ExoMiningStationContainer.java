@@ -14,6 +14,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
+import static com.wingmann.signals.blockentities.ExoMiningStationBlockEntity.*;
 import static com.wingmann.signals.items.TapeItem.isTapeItem;
 
 public class ExoMiningStationContainer extends AbstractContainerMenu {
@@ -29,7 +30,10 @@ public class ExoMiningStationContainer extends AbstractContainerMenu {
 
         if (blockEntity != null) {
             blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-                addSlot(new SlotItemHandler(h, 0, 82, 24));
+                addSlot(new SlotItemHandler(h, TAPE_SLOT_INDEX, 82, 24));
+
+                // Add output slots
+                addSlotRange(h, OUTPUT_SLOT_INDEX, 10, 24+18, OUTPUT_SLOT_COUNT, 18);
             });
         }
 
@@ -43,6 +47,7 @@ public class ExoMiningStationContainer extends AbstractContainerMenu {
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
+        // TODO: Make this work with new item handler slots
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
         if (slot != null && slot.hasItem()) {
