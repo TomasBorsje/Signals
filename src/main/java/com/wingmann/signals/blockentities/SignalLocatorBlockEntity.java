@@ -1,7 +1,7 @@
 package com.wingmann.signals.blockentities;
 
-import com.wingmann.signals.config.SignalsConfig;
 import com.wingmann.signals.registry.SignalData;
+import com.wingmann.signals.registry.SignalDataRegistry;
 import com.wingmann.signals.setup.Registration;
 import com.wingmann.signals.util.TapeTag;
 import net.minecraft.core.BlockPos;
@@ -21,13 +21,13 @@ import javax.annotation.Nullable;
 
 import static com.wingmann.signals.items.TapeItem.isTapeItem;
 
-public class SignalTerminalBlockEntity extends BlockEntity {
+public class SignalLocatorBlockEntity extends BlockEntity {
 
     private final ItemStackHandler itemHandler = createItemHandler();
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
 
-    public SignalTerminalBlockEntity(BlockPos pos, BlockState state) {
-        super(Registration.SIGNAL_TERMINAL_BLOCK_ENTITY.get(), pos, state);
+    public SignalLocatorBlockEntity(BlockPos pos, BlockState state) {
+        super(Registration.SIGNAL_LOCATOR_BLOCK_ENTITY.get(), pos, state);
     }
 
     @Override
@@ -36,18 +36,31 @@ public class SignalTerminalBlockEntity extends BlockEntity {
         handler.invalidate();
     }
 
-    public void tickServer() {
+    public boolean hasNonEmptyTape() {
+        ItemStack stack = itemHandler.getStackInSlot(0);
+        return isTapeItem(stack) && TapeTag.isValidTapeTag(stack.getTag()) && !(new TapeTag(stack.getTag()).isEmpty());
+    }
+
+    /**
+     * Attempts to set the current tape's data to a random signal.
+     */
+    public void trySetTapeData() {
         ItemStack tape = itemHandler.getStackInSlot(0);
         if (tape.getItem() == Registration.TAPE_ITEM.get() && TapeTag.isValidTapeTag(tape.getTag())) {
             // We have a valid tape + tape NBT
             TapeTag tag = new TapeTag(tape.getTag());
-            if(!tag.isEmpty()) {
-                // Do processing
-                tag.downloadProgress += 1f/200f * tag.getData().downloadTimeMultiplier * SignalsConfig.GLOBAL_DOWNLOAD_SPEED_MULTIPLIER.get(); // 10 seconds default * multiplier
-                tag.downloadProgress = Math.min(tag.downloadProgress, 1);
+            if(tag.isEmpty()) {
+                // Empty data, get random signal and assign it to the tape
+                assert level != null;
+                SignalData signalData = SignalDataRegistry.getRegistry().getRandomSignalData(level.random);
+                tag.signalId = signalData.id;
             }
             tape.setTag(tag.toCompoundTag());
         }
+    }
+
+    public void tickServer() {
+        // Nothing
     }
 
     @Override
@@ -65,11 +78,6 @@ public class SignalTerminalBlockEntity extends BlockEntity {
             return tapeTag.getData();
         }
         return null;
-    }
-
-    public boolean hasNonEmptyTape() {
-        ItemStack stack = itemHandler.getStackInSlot(0);
-        return isTapeItem(stack) && TapeTag.isValidTapeTag(stack.getTag()) && !(new TapeTag(stack.getTag()).isEmpty());
     }
 
     @Override

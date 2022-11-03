@@ -1,18 +1,20 @@
 package com.wingmann.signals.screens;
 
-import com.wingmann.signals.Signals;
-import com.wingmann.signals.blocks.SignalTerminalBlock;
-import com.wingmann.signals.containers.SignalTerminalContainer;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.wingmann.signals.Signals;
+import com.wingmann.signals.blocks.SignalLocatorBlock;
+import com.wingmann.signals.containers.SignalLocatorContainer;
+import com.wingmann.signals.network.PacketSelectSignal;
+import com.wingmann.signals.network.SignalsPacketHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class SignalTerminalScreen extends AbstractContainerScreen<SignalTerminalContainer> {
-    private final ResourceLocation GUI = new ResourceLocation(Signals.MODID, "textures/gui/signal_terminal_gui.png");
+public class SignalLocatorScreen extends AbstractContainerScreen<SignalLocatorContainer> {
+    private final ResourceLocation GUI = new ResourceLocation(Signals.MODID, "textures/gui/signal_locator_gui.png");
     private final ResourceLocation PLANET_TEXTURE = new ResourceLocation(Signals.MODID, "textures/gui/planet.png");
 
     private final static int SIGNAL_PREVIEW_WIDTH = 56;
@@ -20,7 +22,7 @@ public class SignalTerminalScreen extends AbstractContainerScreen<SignalTerminal
     private final static int SIGNAL_PREVIEW_TOP_LEFT_X = 114;
     private final static int SIGNAL_PREVIEW_TOP_LEFT_Y = 13;
 
-    public SignalTerminalScreen(SignalTerminalContainer container, Inventory inv, Component name) {
+    public SignalLocatorScreen(SignalLocatorContainer container, Inventory inv, Component name) {
         super(container, inv, name);
     }
 
@@ -33,7 +35,7 @@ public class SignalTerminalScreen extends AbstractContainerScreen<SignalTerminal
 
     @Override
     protected void renderLabels(PoseStack matrixStack, int mouseX, int mouseY) {
-        drawString(matrixStack, Minecraft.getInstance().font, Component.translatable(SignalTerminalBlock.SCREEN_SIGNAL_TERMINAL), 10, 10, 0xffffff);
+        drawString(matrixStack, Minecraft.getInstance().font, Component.translatable(SignalLocatorBlock.SCREEN_SIGNAL_LOCATOR), 10, 10, 0xffffff);
 
     }
 
@@ -44,12 +46,24 @@ public class SignalTerminalScreen extends AbstractContainerScreen<SignalTerminal
         int relY = (this.height - this.imageHeight) / 2;
         this.blit(matrixStack, relX, relY, 0, 0, this.imageWidth, this.imageHeight);
         if(getMenu().getBlockEntity() != null && getMenu().getBlockEntity().hasNonEmptyTape() && getMenu().getBlockEntity().tryGetSignalData() != null) {
-            // Draw signal preview
-            // TODO: cache resourcelocations
+            // Draw signal preview TODO: cache resourcelocations
             RenderSystem.setShaderTexture(0, new ResourceLocation(Signals.MODID, "textures/gui/signalpreviews/"+getMenu().getBlockEntity().tryGetSignalData().signalPreviewTexture+".png"));
             this.blit(matrixStack, relX + SIGNAL_PREVIEW_TOP_LEFT_X, relY + SIGNAL_PREVIEW_TOP_LEFT_Y, 0, 0,
                     SIGNAL_PREVIEW_WIDTH, SIGNAL_PREVIEW_HEIGHT);
         }
 
+    }
+
+    @Override
+    public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
+        // If clicked between the signal preview
+        if(pMouseX > SIGNAL_PREVIEW_TOP_LEFT_X && pMouseX < SIGNAL_PREVIEW_TOP_LEFT_X + SIGNAL_PREVIEW_WIDTH &&
+                pMouseY > SIGNAL_PREVIEW_TOP_LEFT_Y && pMouseY < SIGNAL_PREVIEW_TOP_LEFT_Y + SIGNAL_PREVIEW_HEIGHT) {
+            // Try set tape data
+            // TODO: Use selected index etc
+            SignalsPacketHandler.sendToServer(new PacketSelectSignal(0, getMenu().getBlockEntity().getBlockPos()));
+            return true;
+        }
+        return super.mouseClicked(pMouseX, pMouseY, pButton);
     }
 }

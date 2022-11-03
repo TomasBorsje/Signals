@@ -2,10 +2,13 @@ package com.wingmann.signals.setup;
 
 import com.wingmann.signals.Signals;
 import com.wingmann.signals.blockentities.ExoMiningStationBlockEntity;
+import com.wingmann.signals.blockentities.SignalLocatorBlockEntity;
 import com.wingmann.signals.blockentities.SignalTerminalBlockEntity;
 import com.wingmann.signals.blocks.ExoMiningStationBlock;
+import com.wingmann.signals.blocks.SignalLocatorBlock;
 import com.wingmann.signals.blocks.SignalTerminalBlock;
 import com.wingmann.signals.containers.ExoMiningStationContainer;
+import com.wingmann.signals.containers.SignalLocatorContainer;
 import com.wingmann.signals.containers.SignalTerminalContainer;
 import com.wingmann.signals.items.TapeItem;
 import net.minecraft.world.inventory.MenuType;
@@ -61,6 +64,13 @@ public class Registration {
     public static final RegistryObject<BlockEntityType<ExoMiningStationBlockEntity>> EXO_MINING_STATION_BLOCK_ENTITY = BLOCK_ENTITIES.register("exo_mining_station", () -> BlockEntityType.Builder.of(ExoMiningStationBlockEntity::new, EXO_MINING_STATION.get()).build(null));
     public static final RegistryObject<MenuType<ExoMiningStationContainer>> EXO_MINING_STATION_CONTAINER = CONTAINERS.register("exo_mining_station",
             () -> IForgeMenuType.create((windowId, inv, data) -> new ExoMiningStationContainer(windowId, data.readBlockPos(), inv, inv.player)));
+
+    ///// Signal Locator /////
+    public static final RegistryObject<Block> SIGNAL_LOCATOR = BLOCKS.register("signal_locator", SignalLocatorBlock::new);
+    public static final RegistryObject<Item> SIGNAL_LOCATOR_ITEM = fromBlock(SIGNAL_LOCATOR);
+    public static final RegistryObject<BlockEntityType<SignalLocatorBlockEntity>> SIGNAL_LOCATOR_BLOCK_ENTITY = BLOCK_ENTITIES.register("signal_locator", () -> BlockEntityType.Builder.of(SignalLocatorBlockEntity::new, SIGNAL_LOCATOR.get()).build(null));
+    public static final RegistryObject<MenuType<SignalLocatorContainer>> SIGNAL_LOCATOR_CONTAINER = CONTAINERS.register("signal_locator",
+            () -> IForgeMenuType.create((windowId, inv, data) -> new SignalLocatorContainer(windowId, data.readBlockPos(), inv, inv.player)));
 
     ///// Normal Blocks /////
     public static final RegistryObject<Block> SATELLITE_DISH_FRAME = BLOCKS.register("satellite_dish_frame", () -> new Block(METAL_BLOCK_PROPERTIES));

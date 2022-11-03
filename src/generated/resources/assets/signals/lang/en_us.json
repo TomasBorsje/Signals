@@ -3,11 +3,13 @@
   "block.signals.satellite_antenna": "Satellite Antenna",
   "block.signals.satellite_dish_frame": "Satellite Dish Frame",
   "block.signals.satellite_dish_support": "Satellite Dish Support",
+  "block.signals.signal_locator": "Signal Locator",
   "block.signals.signal_terminal": "Signal Terminal",
   "item.signals.circuit_board": "Circuit Board",
   "item.signals.tape": "Tape",
   "itemGroup.signals": "Signals",
   "screen.signals.exo_mining_station": "Exo-Mining Station",
+  "screen.signals.signal_locator": "Signal Locator",
   "screen.signals.signal_terminal": "Signal Terminal",
   "signals.book.description": "Signals is a space-based resource generation mod focused on detecting signals from outer planets and investigating them for loot.",
   "signals.book.title": "Signals And You",
@@ -23,5 +25,6 @@
   "signals.tooltips.signal_name_title": "Signal Name: ",
   "signals.ui.signal_terminal_title": "Signal Terminal",
   "tooltip.signals.exo_mining_station_description": "A station in charge of sending exo-miner drones to harvest valuable resources from outer space.",
+  "tooltip.signals.signal_locator_description": "Stores a signal's coordinates onto a tape, allowing satellites to begin downloading it.",
   "tooltip.signals.signal_terminal_description": "A satellite terminal that allows the user to download extraterrestrial signals and store them onto tapes."
 }

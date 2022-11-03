@@ -2,6 +2,7 @@ package com.wingmann.signals.datagen;
 
 import com.wingmann.signals.Signals;
 import com.wingmann.signals.blocks.ExoMiningStationBlock;
+import com.wingmann.signals.blocks.SignalLocatorBlock;
 import com.wingmann.signals.blocks.SignalTerminalBlock;
 import com.wingmann.signals.setup.ModSetup;
 import com.wingmann.signals.setup.Registration;
@@ -29,6 +30,7 @@ public class SignalsLanguageProvider extends LanguageProvider {
         add(Registration.SATELLITE_ANTENNA.get(), "Satellite Antenna");
         // Exo-Mining Station
         add(Registration.EXO_MINING_STATION.get(), "Exo-Mining Station");
+        add(Registration.SIGNAL_LOCATOR.get(), "Signal Locator");
     }
 
     private void addUI() {
@@ -36,6 +38,7 @@ public class SignalsLanguageProvider extends LanguageProvider {
         add("signals.ui.signal_terminal_title", "Signal Terminal");
         add(SignalTerminalBlock.SCREEN_SIGNAL_TERMINAL, "Signal Terminal");
         add(ExoMiningStationBlock.SCREEN_EXO_MINING_STATION, "Exo-Mining Station");
+        add(SignalLocatorBlock.SCREEN_SIGNAL_LOCATOR, "Signal Locator");
     }
 
     private void addTooltips() {
@@ -45,6 +48,7 @@ public class SignalsLanguageProvider extends LanguageProvider {
         add("signals.empty_tape", "Empty");
         add(ExoMiningStationBlock.DESCRIPTION, "A station in charge of sending exo-miner drones to harvest valuable resources from outer space.");
         add(SignalTerminalBlock.DESCRIPTION, "A satellite terminal that allows the user to download extraterrestrial signals and store them onto tapes.");
+        add(SignalLocatorBlock.DESCRIPTION, "Stores a signal's coordinates onto a tape, allowing satellites to begin downloading it.");
     }
 
     private void addSignal() {
