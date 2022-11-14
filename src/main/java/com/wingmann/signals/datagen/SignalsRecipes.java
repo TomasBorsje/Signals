@@ -1,12 +1,15 @@
 package com.wingmann.signals.datagen;
 
+import com.wingmann.signals.Signals;
 import com.wingmann.signals.setup.Registration;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
@@ -68,5 +71,10 @@ public class SignalsRecipes extends RecipeProvider {
                 .group("signals")
                 .unlockedBy("circuit_board", InventoryChangeTrigger.TriggerInstance.hasItems(Registration.CIRCUIT_BOARD.get()))
                 .save(consumer);
+
+        // Furnaces
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Registration.ALUMINIUM_CHUNK.get()), Registration.ALUMINIUM_INGOT.get(), 0.7f, 200)
+                .unlockedBy("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(Registration.ALUMINIUM_ORE.get()))
+                .save(consumer, Signals.MODID + ":smelting/" + Registration.ALUMINIUM_INGOT.getId().getPath());
     }
 }

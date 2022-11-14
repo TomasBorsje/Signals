@@ -31,6 +31,8 @@ public class SignalsLanguageProvider extends LanguageProvider {
         // Exo-Mining Station
         add(Registration.EXO_MINING_STATION.get(), "Exo-Mining Station");
         add(Registration.SIGNAL_LOCATOR.get(), "Signal Locator");
+        // Ore
+        add(Registration.ALUMINIUM_ORE.get(), "Aluminium Ore");
     }
 
     private void addUI() {
@@ -70,5 +72,7 @@ public class SignalsLanguageProvider extends LanguageProvider {
     private void addItems() {
         add(Registration.TAPE_ITEM.get(), "Tape");
         add(Registration.CIRCUIT_BOARD.get(), "Circuit Board");
+        add(Registration.ALUMINIUM_CHUNK.get(), "Aluminium Chunk");
+        add(Registration.ALUMINIUM_INGOT.get(), "Aluminium Ingot");
     }
 }

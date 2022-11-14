@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 0.7,
+  "ingredient": {
+    "item": "signals:aluminium_chunk"
+  },
+  "result": "signals:aluminium_ingot"
+}

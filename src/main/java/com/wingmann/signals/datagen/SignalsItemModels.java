@@ -19,8 +19,12 @@ public class SignalsItemModels extends ItemModelProvider {
         withExistingParent(Registration.SATELLITE_ANTENNA.getId().getPath(), modLoc("block/satellite_antenna"));
         withExistingParent(Registration.EXO_MINING_STATION.getId().getPath(), modLoc("block/exo_mining_station"));
         withExistingParent(Registration.SIGNAL_LOCATOR.getId().getPath(), modLoc("block/signal_locator"));
+        withExistingParent(Registration.ALUMINIUM_ORE.getId().getPath(), modLoc("block/aluminium_ore"));
+
         // Add a single texture with tape item
         singleTexture(Registration.TAPE_ITEM.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/tape"));
         singleTexture(Registration.CIRCUIT_BOARD.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/circuit_board"));
+        singleTexture(Registration.ALUMINIUM_CHUNK.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/aluminium_chunk"));
+        singleTexture(Registration.ALUMINIUM_INGOT.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/aluminium_ingot"));
     }
 }

@@ -16,5 +16,6 @@ public class SignalsLootTables extends BaseLootTableProvider {
         lootTables.put(Registration.SIGNAL_TERMINAL.get(), createStandardTable("signal_terminal", Registration.SIGNAL_TERMINAL.get(), Registration.SIGNAL_TERMINAL_BLOCK_ENTITY.get()));
         lootTables.put(Registration.EXO_MINING_STATION.get(), createStandardTable("exo_mining_station", Registration.EXO_MINING_STATION.get(), Registration.EXO_MINING_STATION_BLOCK_ENTITY.get()));
         lootTables.put(Registration.SIGNAL_LOCATOR.get(), createStandardTable("signal_locator", Registration.SIGNAL_LOCATOR.get(), Registration.SIGNAL_LOCATOR_BLOCK_ENTITY.get()));
+        lootTables.put(Registration.ALUMINIUM_ORE.get(), createSilkTouchTable("aluminium_ore", Registration.ALUMINIUM_ORE.get(), Registration.ALUMINIUM_CHUNK.get(), 1, 1));
     }
 }

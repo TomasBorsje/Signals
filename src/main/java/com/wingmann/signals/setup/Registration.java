@@ -50,6 +50,7 @@ public class Registration {
     public static final BlockBehaviour.Properties METAL_BLOCK_PROPERTIES = BlockBehaviour.Properties.of(Material.METAL).strength(2f).requiresCorrectToolForDrops();
     static final BlockBehaviour.Properties METAL_BLOCK_NO_OCCLUSION_PROPERTIES = METAL_BLOCK_PROPERTIES.noOcclusion();
     public static final Item.Properties ITEM_PROPERTIES = new Item.Properties().tab(ModSetup.ITEM_TAB);
+    public static final Item.Properties ITEM_PROPERTIES_64_STACK = new Item.Properties().tab(ModSetup.ITEM_TAB).stacksTo(64);
 
     ///// Signal Terminal /////
     public static final RegistryObject<Block> SIGNAL_TERMINAL = BLOCKS.register("signal_terminal", SignalTerminalBlock::new);
@@ -79,9 +80,14 @@ public class Registration {
     public static final RegistryObject<Item> SATELLITE_DISH_SUPPORT_ITEM = fromBlock(SATELLITE_DISH_SUPPORT);
     public static final RegistryObject<Block> SATELLITE_ANTENNA = BLOCKS.register("satellite_antenna", () -> new Block(METAL_BLOCK_PROPERTIES));
     public static final RegistryObject<Item> SATELLITE_ANTENNA_ITEM = fromBlock(SATELLITE_ANTENNA);
+    public static final RegistryObject<Block> ALUMINIUM_ORE = BLOCKS.register("aluminium_ore", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(3f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Item> ALUMINIUM_ORE_ITEM = fromBlock(ALUMINIUM_ORE);
 
     ///// Items /////
     public static final RegistryObject<Item> TAPE_ITEM = ITEMS.register("tape", TapeItem::new);
-    public static final RegistryObject<Item> CIRCUIT_BOARD = ITEMS.register("circuit_board", () -> new Item(ITEM_PROPERTIES));
-
+    public static final RegistryObject<Item> CIRCUIT_BOARD = ITEMS.register("circuit_board", () -> new Item(ITEM_PROPERTIES_64_STACK));
+    // TODO: Add aluminium ore and chunk tags etc
+    // TODO: Worldgen config for aluminium ore
+    public static final RegistryObject<Item> ALUMINIUM_CHUNK = ITEMS.register("aluminium_chunk", () -> new Item(ITEM_PROPERTIES_64_STACK));
+    public static final RegistryObject<Item> ALUMINIUM_INGOT = ITEMS.register("aluminium_ingot", () -> new Item(ITEM_PROPERTIES_64_STACK));
 }
