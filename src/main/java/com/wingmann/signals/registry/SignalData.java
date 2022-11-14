@@ -1,5 +1,8 @@
 package com.wingmann.signals.registry;
 
+import com.wingmann.signals.Signals;
+import net.minecraft.resources.ResourceLocation;
+
 public class SignalData {
     /**
      * ID of the signal. "unknown" is an unknown signal, and always present in the registry.
@@ -27,6 +30,8 @@ public class SignalData {
 
     public final String signalPreviewTexture;
 
+    public final ResourceLocation signalPreviewResourceLocation;
+
     public SignalData(String id, String signalName, String signalDescription, String lootTableName,
                       float downloadTimeMultiplier, String signalPreviewTexture) {
         this.id = id;
@@ -35,5 +40,6 @@ public class SignalData {
         this.lootTableName = lootTableName;
         this.downloadTimeMultiplier = downloadTimeMultiplier;
         this.signalPreviewTexture = signalPreviewTexture;
+        this.signalPreviewResourceLocation = new ResourceLocation(Signals.MODID, "textures/gui/signalpreviews/"+signalPreviewTexture+".png");
     }
 }

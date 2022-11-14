@@ -1,6 +1,7 @@
 package com.wingmann.signals.network;
 
 import com.wingmann.signals.Signals;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
@@ -18,7 +19,6 @@ public class SignalsPacketHandler {
     }
 
     public static void register() {
-        // Make the channel. If needed you can do version checking here
         SimpleChannel net = NetworkRegistry.ChannelBuilder
                 .named(new ResourceLocation(Signals.MODID, "main"))
                 .networkProtocolVersion(() -> "1.0")
@@ -28,9 +28,7 @@ public class SignalsPacketHandler {
 
         INSTANCE = net;
 
-        // Register all our packets. We only have one right now. The new message has a unique ID, an indication
-        // of how it is going to be used (from client to server) and ways to encode and decode it. Finally 'handle'
-        // will actually execute when the packet is received
+        // Register packet for selecting a signal with the signal locator
         net.messageBuilder(PacketSelectSignal.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(PacketSelectSignal::new)
                 .encoder(PacketSelectSignal::toBytes)
@@ -44,5 +42,13 @@ public class SignalsPacketHandler {
 
     public static <MSG> void sendToPlayer(MSG message, ServerPlayer player) {
         INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), message);
+    }
+
+    public static <MSG> void sendToPlayersTrackingChunk(MSG message, ServerPlayer player) {
+        INSTANCE.send(PacketDistributor.TRACKING_CHUNK.with(() -> player.getLevel().getChunkAt(player.blockPosition())), message);
+    }
+
+    public static <MSG> void sendToPlayersTrackingChunk(MSG message, ServerPlayer player, BlockPos pos) {
+        INSTANCE.send(PacketDistributor.TRACKING_CHUNK.with(() -> player.getLevel().getChunkAt(pos)), message);
     }
 }

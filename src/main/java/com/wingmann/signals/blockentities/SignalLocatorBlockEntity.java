@@ -18,6 +18,9 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static com.wingmann.signals.items.TapeItem.isTapeItem;
 
@@ -25,6 +28,9 @@ public class SignalLocatorBlockEntity extends BlockEntity {
 
     private final ItemStackHandler itemHandler = createItemHandler();
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
+
+    private final SignalData[] signalDataList = new SignalData[MAX_SIGNALS];
+    public static final int MAX_SIGNALS = 3;
 
     public SignalLocatorBlockEntity(BlockPos pos, BlockState state) {
         super(Registration.SIGNAL_LOCATOR_BLOCK_ENTITY.get(), pos, state);
@@ -39,6 +45,27 @@ public class SignalLocatorBlockEntity extends BlockEntity {
     public boolean hasNonEmptyTape() {
         ItemStack stack = itemHandler.getStackInSlot(0);
         return isTapeItem(stack) && TapeTag.isValidTapeTag(stack.getTag()) && !(new TapeTag(stack.getTag()).isEmpty());
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        refreshSignalList();
+    }
+
+    /**
+     * Replaces all existing signals with random ones.
+     */
+    public void refreshSignalList() {
+        if(level == null || level.isClientSide) return;
+        for(int i = 0; i < MAX_SIGNALS; i++) {
+            System.out.println("Refreshed data list!");
+            signalDataList[i] = SignalDataRegistry.getRegistry().getRandomSignalData(level.random);
+        }
+    }
+
+    public List<SignalData> getSignalDataList() {
+        return Collections.unmodifiableList(Arrays.stream(signalDataList).toList());
     }
 
     /**

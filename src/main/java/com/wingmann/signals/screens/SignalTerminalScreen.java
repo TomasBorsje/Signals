@@ -13,8 +13,6 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class SignalTerminalScreen extends AbstractContainerScreen<SignalTerminalContainer> {
     private final ResourceLocation GUI = new ResourceLocation(Signals.MODID, "textures/gui/signal_terminal_gui.png");
-    private final ResourceLocation PLANET_TEXTURE = new ResourceLocation(Signals.MODID, "textures/gui/planet.png");
-
     private final static int SIGNAL_PREVIEW_WIDTH = 56;
     private final static int SIGNAL_PREVIEW_HEIGHT = 40;
     private final static int SIGNAL_PREVIEW_TOP_LEFT_X = 114;
@@ -45,8 +43,7 @@ public class SignalTerminalScreen extends AbstractContainerScreen<SignalTerminal
         this.blit(matrixStack, relX, relY, 0, 0, this.imageWidth, this.imageHeight);
         if(getMenu().getBlockEntity() != null && getMenu().getBlockEntity().hasNonEmptyTape() && getMenu().getBlockEntity().tryGetSignalData() != null) {
             // Draw signal preview
-            // TODO: cache resourcelocations
-            RenderSystem.setShaderTexture(0, new ResourceLocation(Signals.MODID, "textures/gui/signalpreviews/"+getMenu().getBlockEntity().tryGetSignalData().signalPreviewTexture+".png"));
+            RenderSystem.setShaderTexture(0, getMenu().getBlockEntity().tryGetSignalData().signalPreviewResourceLocation);
             this.blit(matrixStack, relX + SIGNAL_PREVIEW_TOP_LEFT_X, relY + SIGNAL_PREVIEW_TOP_LEFT_Y, 0, 0,
                     SIGNAL_PREVIEW_WIDTH, SIGNAL_PREVIEW_HEIGHT);
         }
