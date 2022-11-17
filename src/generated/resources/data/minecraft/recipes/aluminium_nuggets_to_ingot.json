@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "signals",
+  "key": {
+    "x": {
+      "item": "signals:aluminium_nugget"
+    }
+  },
+  "pattern": [
+    "xxx",
+    "xxx",
+    "xxx"
+  ],
+  "result": {
+    "item": "signals:aluminium_ingot"
+  }
+}

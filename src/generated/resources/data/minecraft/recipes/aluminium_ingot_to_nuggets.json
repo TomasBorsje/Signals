@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "signals",
+  "ingredients": [
+    {
+      "item": "signals:aluminium_ingot"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "signals:aluminium_nugget"
+  }
+}

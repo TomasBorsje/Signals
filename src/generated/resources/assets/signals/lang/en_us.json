@@ -1,5 +1,7 @@
 {
+  "block.signals.aluminium_block": "Aluminium Block",
   "block.signals.aluminium_ore": "Aluminium Ore",
+  "block.signals.deepslate_aluminium_ore": "Deepslate Aluminium Ore",
   "block.signals.exo_mining_station": "Exo-Mining Station",
   "block.signals.satellite_antenna": "Satellite Antenna",
   "block.signals.satellite_dish_frame": "Satellite Dish Frame",
@@ -8,6 +10,7 @@
   "block.signals.signal_terminal": "Signal Terminal",
   "item.signals.aluminium_chunk": "Aluminium Chunk",
   "item.signals.aluminium_ingot": "Aluminium Ingot",
+  "item.signals.aluminium_nugget": "Aluminium Nugget",
   "item.signals.circuit_board": "Circuit Board",
   "item.signals.tape": "Tape",
   "itemGroup.signals": "Signals",

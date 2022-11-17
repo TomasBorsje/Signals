@@ -6,6 +6,8 @@
     "signals:satellite_antenna",
     "signals:exo_mining_station",
     "signals:signal_locator",
-    "signals:aluminium_ore"
+    "signals:aluminium_ore",
+    "signals:deepslate_aluminium_ore",
+    "signals:aluminium_block"
   ]
 }

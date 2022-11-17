@@ -4,10 +4,7 @@ import com.wingmann.signals.Signals;
 import com.wingmann.signals.setup.Registration;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
@@ -71,10 +68,38 @@ public class SignalsRecipes extends RecipeProvider {
                 .group("signals")
                 .unlockedBy("circuit_board", InventoryChangeTrigger.TriggerInstance.hasItems(Registration.CIRCUIT_BOARD.get()))
                 .save(consumer);
+        // Aluminium to nugget and vice versa
+        ShapedRecipeBuilder.shaped(Registration.ALUMINIUM_INGOT.get())
+                .pattern("xxx")
+                .pattern("xxx")
+                .pattern("xxx")
+                .define('x', Registration.ALUMINIUM_NUGGET.get())
+                .group("signals")
+                .unlockedBy("aluminium_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Registration.ALUMINIUM_INGOT.get()))
+                .save(consumer, "aluminium_nuggets_to_ingot");
+        ShapelessRecipeBuilder.shapeless(Registration.ALUMINIUM_NUGGET.get(), 9)
+                .requires(Registration.ALUMINIUM_INGOT.get())
+                .group("signals")
+                .unlockedBy("aluminium_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Registration.ALUMINIUM_INGOT.get()))
+                .save(consumer, "aluminium_ingot_to_nuggets");
+        // Aluminium ingot to block and vice versa
+        ShapedRecipeBuilder.shaped(Registration.ALUMINIUM_BLOCK.get())
+                .pattern("xxx")
+                .pattern("xxx")
+                .pattern("xxx")
+                .define('x', Registration.ALUMINIUM_INGOT.get())
+                .group("signals")
+                .unlockedBy("aluminium_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Registration.ALUMINIUM_INGOT.get()))
+                .save(consumer, "aluminium_ingot_to_block");
+        ShapelessRecipeBuilder.shapeless(Registration.ALUMINIUM_INGOT.get())
+                .requires(Registration.ALUMINIUM_BLOCK.get())
+                .group("signals")
+                .unlockedBy("aluminium_block", InventoryChangeTrigger.TriggerInstance.hasItems(Registration.ALUMINIUM_BLOCK.get()))
+                .save(consumer, "aluminium_block_to_ingots");
 
         // Furnaces
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(Registration.ALUMINIUM_CHUNK.get()), Registration.ALUMINIUM_INGOT.get(), 0.7f, 200)
-                .unlockedBy("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(Registration.ALUMINIUM_ORE.get()))
+                .unlockedBy("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(Registration.ALUMINIUM_ORE.get(), Registration.DEEPSLATE_ALUMINIUM_ORE.get()))
                 .save(consumer, Signals.MODID + ":smelting/" + Registration.ALUMINIUM_INGOT.getId().getPath());
     }
 }

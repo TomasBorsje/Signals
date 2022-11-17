@@ -33,6 +33,8 @@ public class SignalsLanguageProvider extends LanguageProvider {
         add(Registration.SIGNAL_LOCATOR.get(), "Signal Locator");
         // Ore
         add(Registration.ALUMINIUM_ORE.get(), "Aluminium Ore");
+        add(Registration.DEEPSLATE_ALUMINIUM_ORE.get(), "Deepslate Aluminium Ore");
+        add(Registration.ALUMINIUM_BLOCK.get(), "Aluminium Block");
     }
 
     private void addUI() {
@@ -74,5 +76,6 @@ public class SignalsLanguageProvider extends LanguageProvider {
         add(Registration.CIRCUIT_BOARD.get(), "Circuit Board");
         add(Registration.ALUMINIUM_CHUNK.get(), "Aluminium Chunk");
         add(Registration.ALUMINIUM_INGOT.get(), "Aluminium Ingot");
+        add(Registration.ALUMINIUM_NUGGET.get(), "Aluminium Nugget");
     }
 }

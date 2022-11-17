@@ -24,5 +24,7 @@ public class SignalsBlockStates extends BlockStateProvider {
         simpleBlock(Registration.EXO_MINING_STATION.get());
         simpleBlock(Registration.SIGNAL_LOCATOR.get());
         simpleBlock(Registration.ALUMINIUM_ORE.get());
+        simpleBlock(Registration.DEEPSLATE_ALUMINIUM_ORE.get());
+        simpleBlock(Registration.ALUMINIUM_BLOCK.get());
     }
 }

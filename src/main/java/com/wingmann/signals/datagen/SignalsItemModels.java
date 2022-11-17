@@ -20,11 +20,14 @@ public class SignalsItemModels extends ItemModelProvider {
         withExistingParent(Registration.EXO_MINING_STATION.getId().getPath(), modLoc("block/exo_mining_station"));
         withExistingParent(Registration.SIGNAL_LOCATOR.getId().getPath(), modLoc("block/signal_locator"));
         withExistingParent(Registration.ALUMINIUM_ORE.getId().getPath(), modLoc("block/aluminium_ore"));
+        withExistingParent(Registration.DEEPSLATE_ALUMINIUM_ORE.getId().getPath(), modLoc("block/deepslate_aluminium_ore"));
+        withExistingParent(Registration.ALUMINIUM_BLOCK.getId().getPath(), modLoc("block/aluminium_block"));
 
-        // Add a single texture with tape item
+        // Add a single texture
         singleTexture(Registration.TAPE_ITEM.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/tape"));
         singleTexture(Registration.CIRCUIT_BOARD.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/circuit_board"));
         singleTexture(Registration.ALUMINIUM_CHUNK.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/aluminium_chunk"));
         singleTexture(Registration.ALUMINIUM_INGOT.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/aluminium_ingot"));
+        singleTexture(Registration.ALUMINIUM_NUGGET.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/aluminium_nugget"));
     }
 }

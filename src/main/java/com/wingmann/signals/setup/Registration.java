@@ -11,6 +11,9 @@ import com.wingmann.signals.containers.ExoMiningStationContainer;
 import com.wingmann.signals.containers.SignalLocatorContainer;
 import com.wingmann.signals.containers.SignalTerminalContainer;
 import com.wingmann.signals.items.TapeItem;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -31,6 +34,7 @@ public class Registration {
     private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Signals.MODID);
     private static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, Signals.MODID);
 
+    // TODO: Split up into separate classes
     public static void init() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         BLOCKS.register(bus);
@@ -82,12 +86,20 @@ public class Registration {
     public static final RegistryObject<Item> SATELLITE_ANTENNA_ITEM = fromBlock(SATELLITE_ANTENNA);
     public static final RegistryObject<Block> ALUMINIUM_ORE = BLOCKS.register("aluminium_ore", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(3f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Item> ALUMINIUM_ORE_ITEM = fromBlock(ALUMINIUM_ORE);
+    public static final RegistryObject<Block> DEEPSLATE_ALUMINIUM_ORE = BLOCKS.register("deepslate_aluminium_ore", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(3f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Item> DEEPSLATE_ALUMINIUM_ORE_ITEM = fromBlock(DEEPSLATE_ALUMINIUM_ORE);
+    public static final RegistryObject<Block> ALUMINIUM_BLOCK = BLOCKS.register("aluminium_block", () -> new Block(METAL_BLOCK_PROPERTIES));
+    public static final RegistryObject<Item> ALUMINIUM_BLOCK_ITEM = fromBlock(ALUMINIUM_BLOCK);
+
+    ///// Tags /////
+    public static final TagKey<Block> ALUMINIUM_ORE_TAG = TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(Signals.MODID, "aluminium_ore"));
+    public static final TagKey<Item> ALUMINIUM_ORE_ITEM_TAG = TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(Signals.MODID, "aluminium_ore"));
 
     ///// Items /////
     public static final RegistryObject<Item> TAPE_ITEM = ITEMS.register("tape", TapeItem::new);
     public static final RegistryObject<Item> CIRCUIT_BOARD = ITEMS.register("circuit_board", () -> new Item(ITEM_PROPERTIES_64_STACK));
-    // TODO: Add aluminium ore and chunk tags etc
-    // TODO: Worldgen config for aluminium ore
+    // TODO: Aluminium ore integration with forge tags etc
     public static final RegistryObject<Item> ALUMINIUM_CHUNK = ITEMS.register("aluminium_chunk", () -> new Item(ITEM_PROPERTIES_64_STACK));
     public static final RegistryObject<Item> ALUMINIUM_INGOT = ITEMS.register("aluminium_ingot", () -> new Item(ITEM_PROPERTIES_64_STACK));
+    public static final RegistryObject<Item> ALUMINIUM_NUGGET = ITEMS.register("aluminium_nugget", () -> new Item(ITEM_PROPERTIES_64_STACK));
 }

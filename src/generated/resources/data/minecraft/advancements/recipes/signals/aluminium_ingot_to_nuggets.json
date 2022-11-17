@@ -1,17 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_item": {
+    "aluminium_ingot": {
       "conditions": {
         "items": [
           {
             "items": [
-              "signals:aluminium_ore"
-            ]
-          },
-          {
-            "items": [
-              "signals:deepslate_aluminium_ore"
+              "signals:aluminium_ingot"
             ]
           }
         ]
@@ -20,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "signals:smelting/aluminium_ingot"
+        "recipe": "minecraft:aluminium_ingot_to_nuggets"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_item",
+      "aluminium_ingot",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "signals:smelting/aluminium_ingot"
+      "minecraft:aluminium_ingot_to_nuggets"
     ]
   }
 }

@@ -5,6 +5,7 @@ import com.wingmann.signals.setup.Registration;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class SignalsBlockTags extends BlockTagsProvider {
@@ -21,7 +22,9 @@ public class SignalsBlockTags extends BlockTagsProvider {
                 .add(Registration.SATELLITE_ANTENNA.get())
                 .add(Registration.EXO_MINING_STATION.get())
                 .add(Registration.SIGNAL_LOCATOR.get())
-                .add(Registration.ALUMINIUM_ORE.get());
+                .add(Registration.ALUMINIUM_ORE.get())
+                .add(Registration.DEEPSLATE_ALUMINIUM_ORE.get())
+                .add(Registration.ALUMINIUM_BLOCK.get());
 
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(Registration.SIGNAL_TERMINAL.get())
@@ -30,7 +33,17 @@ public class SignalsBlockTags extends BlockTagsProvider {
                 .add(Registration.SATELLITE_ANTENNA.get())
                 .add(Registration.EXO_MINING_STATION.get())
                 .add(Registration.SIGNAL_LOCATOR.get())
-                .add(Registration.ALUMINIUM_ORE.get());
+                .add(Registration.ALUMINIUM_ORE.get())
+                .add(Registration.DEEPSLATE_ALUMINIUM_ORE.get())
+                .add(Registration.ALUMINIUM_BLOCK.get());
+
+        tag(Tags.Blocks.ORES)
+                .add(Registration.ALUMINIUM_ORE.get())
+                .add(Registration.DEEPSLATE_ALUMINIUM_ORE.get());
+
+        tag(Registration.ALUMINIUM_ORE_TAG)
+                .add(Registration.ALUMINIUM_ORE.get())
+                .add(Registration.DEEPSLATE_ALUMINIUM_ORE.get());
     }
 
     @Override

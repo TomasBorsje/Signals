@@ -5,6 +5,8 @@ import com.wingmann.signals.config.SignalsConfig;
 import com.wingmann.signals.setup.ClientSetup;
 import com.wingmann.signals.setup.ModSetup;
 import com.wingmann.signals.setup.Registration;
+import com.wingmann.signals.world.feature.ModConfiguredFeatures;
+import com.wingmann.signals.world.feature.ModPlacedFeatures;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
@@ -23,6 +25,9 @@ public class Signals
         Registration.init();
         SignalsConfig.register();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        ModConfiguredFeatures.register(modEventBus);
+        ModPlacedFeatures.register(modEventBus);
 
         // Register 'ModSetup::init' to be called at mod setup time (server and client)
         modEventBus.addListener(ModSetup::init);

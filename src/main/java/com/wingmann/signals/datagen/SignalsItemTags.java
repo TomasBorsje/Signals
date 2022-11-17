@@ -15,7 +15,19 @@ public class SignalsItemTags extends ItemTagsProvider {
 
     @Override
     protected void addTags() {
-        tag(Tags.Items.ORES).add(Registration.ALUMINIUM_ORE_ITEM.get());
+        tag(Tags.Items.ORES)
+                .add(Registration.ALUMINIUM_ORE_ITEM.get())
+                .add(Registration.DEEPSLATE_ALUMINIUM_ORE_ITEM.get());
+
+        tag(Tags.Items.NUGGETS)
+                .add(Registration.ALUMINIUM_NUGGET.get());
+
+        tag(Tags.Items.STORAGE_BLOCKS)
+                .add(Registration.ALUMINIUM_BLOCK_ITEM.get());
+
+        tag(Registration.ALUMINIUM_ORE_ITEM_TAG)
+                .add(Registration.ALUMINIUM_ORE_ITEM.get())
+                .add(Registration.DEEPSLATE_ALUMINIUM_ORE_ITEM.get());
     }
 
     @Override
