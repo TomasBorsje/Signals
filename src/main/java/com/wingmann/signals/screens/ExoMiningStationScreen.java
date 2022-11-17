@@ -16,9 +16,9 @@ public class ExoMiningStationScreen extends AbstractContainerScreen<ExoMiningSta
 
     public ExoMiningStationScreen(ExoMiningStationContainer container, Inventory inv, Component name) {
         super(container, inv, name);
+        this.imageHeight = 152;
+        this.imageWidth = 180;
     }
-
-
 
     @Override
     public void render(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {

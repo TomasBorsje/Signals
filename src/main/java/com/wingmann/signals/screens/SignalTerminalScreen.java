@@ -20,6 +20,8 @@ public class SignalTerminalScreen extends AbstractContainerScreen<SignalTerminal
 
     public SignalTerminalScreen(SignalTerminalContainer container, Inventory inv, Component name) {
         super(container, inv, name);
+        this.imageHeight = 152;
+        this.imageWidth = 180;
     }
 
     @Override
