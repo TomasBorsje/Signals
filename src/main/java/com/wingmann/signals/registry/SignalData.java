@@ -59,17 +59,12 @@ public class SignalData {
      * @return Hex code for this signal's rarity
      */
     public int getRarityColour() {
-        switch (rarity) {
-            case 1:
-                return 0x00FF00; // Green
-            case 2:
-                return 0x0000FF; // Blue
-            case 3:
-                return 0xFF00FF; // Purple
-            case 4:
-                return 0xFFA500; // Orange
-            default:
-                return 0xFFFFFF; // White
-        }
+        return switch (rarity) {
+            case 1 -> 0x4FFF4F; // Green
+            case 2 -> 0x2176FF; // Blue
+            case 3 -> 0xDD00FF; // Purple
+            case 4 -> 0xFFC917; // Orange
+            default -> 0xFFFFFF; // White
+        };
     }
 }

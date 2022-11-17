@@ -6,7 +6,7 @@ import com.wingmann.signals.Signals;
 import com.wingmann.signals.blockentities.SignalLocatorBlockEntity;
 import com.wingmann.signals.blocks.SignalLocatorBlock;
 import com.wingmann.signals.containers.SignalLocatorContainer;
-import com.wingmann.signals.network.PacketSelectSignal;
+import com.wingmann.signals.network.PacketStartSignalScan;
 import com.wingmann.signals.network.SignalsPacketHandler;
 import com.wingmann.signals.registry.SignalData;
 import net.minecraft.client.Minecraft;
@@ -16,6 +16,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
+import java.awt.*;
 import java.util.List;
 
 public class SignalLocatorScreen extends AbstractContainerScreen<SignalLocatorContainer> {
@@ -25,8 +26,12 @@ public class SignalLocatorScreen extends AbstractContainerScreen<SignalLocatorCo
     private final static int SIGNAL_PREVIEW_TOP_LEFT_X = 114;
     private final static int SIGNAL_PREVIEW_TOP_LEFT_Y = 13;
 
+    private final static Rectangle scanButton = new Rectangle(13,48,43,14);
+
     public SignalLocatorScreen(SignalLocatorContainer container, Inventory inv, Component name) {
         super(container, inv, name);
+        this.imageHeight = 152;
+        this.imageWidth = 180;
     }
 
     @Override
@@ -52,6 +57,11 @@ public class SignalLocatorScreen extends AbstractContainerScreen<SignalLocatorCo
         int relX = (this.width - this.imageWidth) / 2;
         int relY = (this.height - this.imageHeight) / 2;
         this.blit(matrixStack, relX, relY, 0, 0, this.imageWidth, this.imageHeight);
+        // TODO: Make this work with non-fullscreen windows
+        if(mouseX >= relX + scanButton.x && mouseX < relX + scanButton.x + scanButton.width &&
+                mouseY >= relY + scanButton.y && mouseY < relY + scanButton.y + scanButton.height) {
+            this.blit(matrixStack, relX + scanButton.x, relY + scanButton.y, this.imageWidth, 0, scanButton.width, scanButton.height);
+        }
         SignalLocatorBlockEntity entity = getMenu().getBlockEntity();
         if (entity != null && entity.hasNonEmptyTape() && entity.tryGetSignalData() != null) {
             // Draw signal preview
@@ -63,20 +73,20 @@ public class SignalLocatorScreen extends AbstractContainerScreen<SignalLocatorCo
 
     private void renderSignalInfo(PoseStack matrixStack, Font font, SignalData data, int index) {
         if(data == null || data.id.equals("unknown")) { return; }
-        int relX = (this.width - this.imageWidth) / 2;
-        int relY = (this.height - this.imageHeight) / 2;
         drawString(matrixStack, font, Component.translatable(data.signalName), 2, font.lineHeight * index + 2, 0xffffff);
     }
 
     @Override
     public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
         // If clicked between the signal preview
-//        if(pMouseX > SIGNAL_PREVIEW_TOP_LEFT_X && pMouseX < SIGNAL_PREVIEW_TOP_LEFT_X + SIGNAL_PREVIEW_WIDTH &&
-//                pMouseY > SIGNAL_PREVIEW_TOP_LEFT_Y && pMouseY < SIGNAL_PREVIEW_TOP_LEFT_Y + SIGNAL_PREVIEW_HEIGHT) {
+        int relX = (this.width - this.imageWidth) / 2;
+        int relY = (this.height - this.imageHeight) / 2;
+        if(pMouseX > relX + scanButton.x && pMouseX < relX + scanButton.x + scanButton.width &&
+                pMouseY > relY + scanButton.y && pMouseY < relY + scanButton.y + scanButton.height) {
             // Try set tape data
-            SignalsPacketHandler.sendToServer(new PacketSelectSignal(0, getMenu().getBlockEntity().getBlockPos()));
-            return super.mouseClicked(pMouseX, pMouseY, pButton);
-//        }
-
+            SignalsPacketHandler.sendToServer(new PacketStartSignalScan(0, getMenu().getBlockEntity().getBlockPos()));
+            return true;
+        }
+        return super.mouseClicked(pMouseX, pMouseY, pButton);
     }
 }

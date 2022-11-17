@@ -25,6 +25,9 @@ public class SignalDataRegistry {
         // Random signals
         registerSignalData(new SignalData("basic1", "signals.signal.basic1", "signals.signal.basic1_description", "basic1", 2.5f, "asteroid", 1));
         registerSignalData(new SignalData("basic2", "signals.signal.basic2", "signals.signal.basic2_description", "basic2", 1.1f, "planet", 0));
+        registerSignalData(new SignalData("basic3", "signals.signal.basic2", "signals.signal.basic2_description", "basic2", 1.1f, "planet", 2));
+        registerSignalData(new SignalData("basic4", "signals.signal.basic2", "signals.signal.basic2_description", "basic2", 1.1f, "planet", 3));
+        registerSignalData(new SignalData("basic5", "signals.signal.basic2", "signals.signal.basic2_description", "basic2", 1.1f, "planet", 4));
     }
     public SignalData getRandomSignalData(RandomSource random) {
         if(signalDataMap.isEmpty()) {

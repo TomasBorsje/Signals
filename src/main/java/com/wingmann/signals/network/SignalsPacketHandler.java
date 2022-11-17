@@ -29,10 +29,10 @@ public class SignalsPacketHandler {
         INSTANCE = net;
 
         // Register packet for selecting a signal with the signal locator
-        net.messageBuilder(PacketSelectSignal.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(PacketSelectSignal::new)
-                .encoder(PacketSelectSignal::toBytes)
-                .consumer(PacketSelectSignal::handle)
+        net.messageBuilder(PacketStartSignalScan.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(PacketStartSignalScan::new)
+                .encoder(PacketStartSignalScan::toBytes)
+                .consumer(PacketStartSignalScan::handle)
                 .add();
     }
 

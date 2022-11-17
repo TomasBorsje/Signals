@@ -8,16 +8,16 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class PacketSelectSignal {
+public class PacketStartSignalScan {
     private final int selectedSignalIndex;
     private final BlockPos signalLocatorBlockPos;
 
-    public PacketSelectSignal(int selectedSignalIndex, BlockPos signalLocatorBlockPos) {
+    public PacketStartSignalScan(int selectedSignalIndex, BlockPos signalLocatorBlockPos) {
         this.selectedSignalIndex = selectedSignalIndex;
         this.signalLocatorBlockPos = signalLocatorBlockPos;
     }
 
-    public PacketSelectSignal(FriendlyByteBuf buf) {
+    public PacketStartSignalScan(FriendlyByteBuf buf) {
         this.selectedSignalIndex = buf.readInt();
         this.signalLocatorBlockPos = buf.readBlockPos();
     }
