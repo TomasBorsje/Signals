@@ -74,7 +74,6 @@ public class SignalLocatorScreen extends AbstractContainerScreen<SignalLocatorCo
 //        if(pMouseX > SIGNAL_PREVIEW_TOP_LEFT_X && pMouseX < SIGNAL_PREVIEW_TOP_LEFT_X + SIGNAL_PREVIEW_WIDTH &&
 //                pMouseY > SIGNAL_PREVIEW_TOP_LEFT_Y && pMouseY < SIGNAL_PREVIEW_TOP_LEFT_Y + SIGNAL_PREVIEW_HEIGHT) {
             // Try set tape data
-            // TODO: Use selected index etc
             SignalsPacketHandler.sendToServer(new PacketSelectSignal(0, getMenu().getBlockEntity().getBlockPos()));
             return super.mouseClicked(pMouseX, pMouseY, pButton);
 //        }

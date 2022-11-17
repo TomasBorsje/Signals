@@ -20,9 +20,6 @@ public class SignalDataRegistry {
         return INSTANCE;
     }
 
-    public void registerSignalData(SignalData signalData) {
-        signalDataMap.put(signalData.id, signalData);
-    }
 
     private SignalDataRegistry() {
         // Random signals
@@ -34,6 +31,16 @@ public class SignalDataRegistry {
             return unknownSignal;
         }
         return (SignalData) signalDataMap.values().toArray()[random.nextInt(signalDataMap.size())];
+    }
+
+    /**
+     * Adds signal data to the registry using its id.
+     * @param data The signal data to add
+     */
+    public void registerSignalData(SignalData data) {
+        if(data != null && data.id != null) {
+            signalDataMap.put(data.id, data);
+        }
     }
 
     public SignalData getSignalData(String id) {

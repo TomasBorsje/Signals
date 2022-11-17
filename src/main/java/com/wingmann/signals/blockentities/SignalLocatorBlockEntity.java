@@ -88,6 +88,7 @@ public class SignalLocatorBlockEntity extends BlockEntity {
 
     public void tickServer() {
         // Nothing
+        // TODO: Make signal locating take a few seconds?
     }
 
     @Override
