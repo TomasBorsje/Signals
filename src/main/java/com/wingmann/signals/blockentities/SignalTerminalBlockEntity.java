@@ -43,7 +43,7 @@ public class SignalTerminalBlockEntity extends BlockEntity {
             TapeTag tag = new TapeTag(tape.getTag());
             if(!tag.isEmpty()) {
                 // Do processing
-                tag.downloadProgress += 1f/200f * tag.getData().downloadTimeMultiplier * SignalsConfig.GLOBAL_DOWNLOAD_SPEED_MULTIPLIER.get(); // 10 seconds default * multiplier
+                tag.downloadProgress += 1f/200f / tag.getData().downloadTimeMultiplier * SignalsConfig.GLOBAL_DOWNLOAD_SPEED_MULTIPLIER.get(); // 10 seconds default * multiplier
                 tag.downloadProgress = Math.min(tag.downloadProgress, 1);
             }
             tape.setTag(tag.toCompoundTag());

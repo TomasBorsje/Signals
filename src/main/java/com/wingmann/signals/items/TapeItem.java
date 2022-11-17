@@ -56,7 +56,14 @@ public class TapeItem extends Item {
         }
     }
 
-    private MutableComponent getObfuscatedString(String translationKey, float filterProgress, Style style) {
+    /**
+     * Returns a randomly partially obfuscated string of the given translation key translated.
+     * @param translationKey The translation key to translate and obfuscate
+     * @param percentage The percentage to randomly obfuscate
+     * @param style The style to apply to the string
+     * @return The obfuscated string
+     */
+    private MutableComponent getObfuscatedString(String translationKey, float percentage, Style style) {
         MutableComponent base = Component.literal("").withStyle(style);
         String translatedName = I18n.get(translationKey);
         // One off to get some random doubles based on signal name
@@ -64,7 +71,7 @@ public class TapeItem extends Item {
 
         for(int i = 0; i < translatedName.length(); i++) {
             MutableComponent letter = Component.literal(translatedName.substring(i, i + 1));
-            if(Math.min(doubles[i] + 0.05, 0.98) > filterProgress) { // Obfuscate if filter progress is lower than 0.05-0.98 randomly
+            if(Math.min(doubles[i] + 0.05, 0.98) > percentage) { // Obfuscate if filter progress is lower than 0.05-0.98 randomly
                 base.append(letter.withStyle(style.withObfuscated(true)));
             } else {
                 base.append(letter);
@@ -73,7 +80,15 @@ public class TapeItem extends Item {
         return base;
     }
 
-    private MutableComponent getCensoredString(String translationKey, float filterProgress, Style style) {
+    /**
+     * Returns a randomly partially censored string of the given translation key translated.
+     * Censors with the - character.
+     * @param translationKey The translation key to translate and censor
+     * @param percentage The percentage to randomly censor
+     * @param style The style to apply to the string
+     * @return The censored string
+     */
+    private MutableComponent getCensoredString(String translationKey, float percentage, Style style) {
         MutableComponent base = Component.literal("").withStyle(style);
         String translatedName = I18n.get(translationKey);
         // One off to get some random doubles based on signal name
@@ -81,7 +96,7 @@ public class TapeItem extends Item {
 
         for(int i = 0; i < translatedName.length(); i++) {
             MutableComponent letter = Component.literal(translatedName.substring(i, i + 1));
-            if(Math.min(doubles[i] + 0.05, 0.98) > filterProgress) { // Obfuscate if filter progress is lower than 0.05-0.98 randomly
+            if(Math.min(doubles[i] + 0.05, 0.98) > percentage) { // Obfuscate if filter progress is lower than 0.05-0.98 randomly
                 base.append(Component.literal("-").withStyle(style));
             } else {
                 base.append(letter);
@@ -100,10 +115,9 @@ public class TapeItem extends Item {
             } else {
                 // Show filled tooltip
                 // Signal Name
-                components.add(Component.translatable("signals.tooltips.signal_name_title").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x5555FF))).append(getObfuscatedString(tapeTag.getData().signalName, tapeTag.downloadProgress, Style.EMPTY.withColor(TextColor.fromRgb(0xff00ff)))));
+                components.add(Component.translatable("signals.tooltips.signal_name_title").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x5555FF))).append(getObfuscatedString(tapeTag.getData().signalName, tapeTag.downloadProgress, Style.EMPTY.withColor(TextColor.fromRgb(tapeTag.getData().getRarityColour())))));
                 // Signal Description
                 components.add(Component.translatable("signals.tooltips.signal_description_title").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x5555FF))));
-                // components.add(Component.translatable(tapeTag.getData().signalDescription).withStyle(Style.EMPTY.withItalic(true).withColor(TextColor.fromRgb(0xA3A3A3))));
                 components.add(getCensoredString(tapeTag.getData().signalDescription, tapeTag.downloadProgress, Style.EMPTY.withItalic(true).withColor(TextColor.fromRgb(0xA3A3A3))));
                 // Download Progress
                 int downloadColour;
@@ -116,9 +130,10 @@ public class TapeItem extends Item {
                 } else {
                     downloadColour = RED; // Red if < 33% done
                 }
+                // Calculate the download bar [|||||||||||||] etc
                 int completedBars = (int) (tapeTag.downloadProgress * DOWNLOAD_BAR_LENGTH);
                 String downloadBar = "[" + StringUtils.repeat('|', completedBars) + StringUtils.repeat('.', DOWNLOAD_BAR_LENGTH - completedBars) + "] (" + String.format("%.1f",tapeTag.downloadProgress * 100) + "%)";
-
+                // Show download bar and title
                 components.add(Component.translatable("signals.tooltips.download_title").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x5555FF))));
                 components.add(Component.literal(downloadBar).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(downloadColour))));
             }

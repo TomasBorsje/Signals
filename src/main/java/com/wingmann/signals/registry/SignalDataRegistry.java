@@ -14,7 +14,7 @@ public class SignalDataRegistry {
 
     private final Map<String, SignalData> signalDataMap = new LinkedHashMap<String, SignalData>();
 
-    private final SignalData unknownSignal = new SignalData("unknown", "signals.signal.unknown_signal", "signals.signal.unknown_signal_description", "signals:unknown", 1, "unknown");
+    private final SignalData unknownSignal = new SignalData("unknown", "signals.signal.unknown_signal", "signals.signal.unknown_signal_description", "signals:unknown", 1, "unknown", 0);
 
     public static SignalDataRegistry getRegistry() {
         return INSTANCE;
@@ -26,8 +26,8 @@ public class SignalDataRegistry {
 
     private SignalDataRegistry() {
         // Random signals
-        registerSignalData(new SignalData("basic1", "signals.signal.basic1", "signals.signal.basic1_description", "basic1", 2.5f, "asteroid"));
-        registerSignalData(new SignalData("basic2", "signals.signal.basic2", "signals.signal.basic2_description", "basic2", 1.1f, "planet"));
+        registerSignalData(new SignalData("basic1", "signals.signal.basic1", "signals.signal.basic1_description", "basic1", 2.5f, "asteroid", 1));
+        registerSignalData(new SignalData("basic2", "signals.signal.basic2", "signals.signal.basic2_description", "basic2", 1.1f, "planet", 0));
     }
     public SignalData getRandomSignalData(RandomSource random) {
         if(signalDataMap.isEmpty()) {

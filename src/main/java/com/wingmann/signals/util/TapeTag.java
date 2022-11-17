@@ -9,6 +9,7 @@ public class TapeTag {
     public float filterProgress = 0;
     public String signalId = "unknown";
     private final CompoundTag internalTag;
+    private SignalData cachedData = null;
 
     /**
      * Create a tape tag with no data.
@@ -31,6 +32,7 @@ public class TapeTag {
         }
         if(tag.contains("signalId")) {
             signalId = tag.getString("signalId");
+            cachedData = SignalDataRegistry.getRegistry().getSignalData(signalId);
         }
     }
 
@@ -38,7 +40,7 @@ public class TapeTag {
      * Get the signal data for this tape.
      */
     public SignalData getData() {
-        return SignalDataRegistry.getRegistry().getSignalData(signalId);
+        return cachedData;
     }
 
     public CompoundTag toCompoundTag() {

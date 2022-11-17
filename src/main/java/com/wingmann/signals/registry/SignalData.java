@@ -32,8 +32,18 @@ public class SignalData {
 
     public final ResourceLocation signalPreviewResourceLocation;
 
+    /**
+     * The rarity of the signal.
+     * 0 - Common (White)
+     * 1 - Uncommon (Green)
+     * 2 - Rare (Blue)
+     * 3 - Epic (Purple)
+     * 4 - Legendary (Orange)
+     */
+    public final int rarity;
+
     public SignalData(String id, String signalName, String signalDescription, String lootTableName,
-                      float downloadTimeMultiplier, String signalPreviewTexture) {
+                      float downloadTimeMultiplier, String signalPreviewTexture, int rarity) {
         this.id = id;
         this.signalName = signalName;
         this.signalDescription = signalDescription;
@@ -41,5 +51,25 @@ public class SignalData {
         this.downloadTimeMultiplier = downloadTimeMultiplier;
         this.signalPreviewTexture = signalPreviewTexture;
         this.signalPreviewResourceLocation = new ResourceLocation(Signals.MODID, "textures/gui/signalpreviews/"+signalPreviewTexture+".png");
+        this.rarity = rarity;
+    }
+
+    /**
+     * Returns the hex code for the colour of this signal's rarity.
+     * @return Hex code for this signal's rarity
+     */
+    public int getRarityColour() {
+        switch (rarity) {
+            case 1:
+                return 0x00FF00; // Green
+            case 2:
+                return 0x0000FF; // Blue
+            case 3:
+                return 0xFF00FF; // Purple
+            case 4:
+                return 0xFFA500; // Orange
+            default:
+                return 0xFFFFFF; // White
+        }
     }
 }
